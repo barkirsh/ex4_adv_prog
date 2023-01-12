@@ -2,12 +2,16 @@
 // Created by barki on 1/12/2023.
 //
 
-#include "ClientData.h"
-ClientData::ClientData(){
-    this.k = 5;
-    this.distance = "EUC";
-}
 
+
+#include "ClientData.h"
+
+using namespace std;
+
+ClientData::ClientData(){
+    this->k = 5;
+    this->distance = "EUC";
+}
 
 // getter for private member k
 int ClientData::getK() {
@@ -53,10 +57,5 @@ vector<string> ClientData::getResultsAlg() {
 // setter for private member resultsAlg
 void ClientData::setResultsAlg(vector<string> new_resultsAlg) {
     resultsAlg = new_resultsAlg;
-}
-
-// getter for private member resultsAlg
-vector<string>& ClientData::getResultsAlg() {
-    return resultsAlg;
 }
 

@@ -1,6 +1,8 @@
 # include "ClassifyDataCommand.h"
+# include "Knn.h"
+# include "DataSetHandler.h"
+void ClassifyDataCommand:: execute(){
 
-void Command:: execute(){
     bool isUploaded = true; // for checikng if files were uploaded
     // check if files csv were uploaded: , ask server if files were uploaded
     if (isUploaded){

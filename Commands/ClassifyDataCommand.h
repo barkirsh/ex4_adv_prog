@@ -1,6 +1,8 @@
 # include "Command.h"
-# include ""
+//# include ""
 class ClassifyDataCommand : public Command{
+public:
+    void execute();
     /**
      * constructor of Classifying data
      * @param path_classified
@@ -8,5 +10,6 @@ class ClassifyDataCommand : public Command{
      * @param k
      * @param distance
      */
-    ClassifyDataCommand(string path_classified, string path_test, int k, string distance);
+  //  ClassifyDataCommand(string path_classified, string path_test, int k, string distance);
+
 };
