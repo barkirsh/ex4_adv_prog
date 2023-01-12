@@ -5,14 +5,25 @@
 #ifndef EX5_ADV_PROG_CLIENTDATA_H
 #define EX5_ADV_PROG_CLIENTDATA_H
 
+#include <vector>
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <cstring>
+#include <sstream>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 class ClientData {
 private:
-     int k ;//= 5; // defult k value
-     string distance; //= "EUC"; // defult distance 'AUC'
-     string path_train; // classified file
-     string path_test; // unclassified file
-     vector<string> resultsAlg;
+    int k ;//= 5; // defult k value
+    string distance; //= "EUC"; // defult distance 'AUC'
+    string path_train; // classified file
+    string path_test; // unclassified file
+    vector<string> resultsAlg;
 public:
     ClientData();
     // costructor - defultive
@@ -25,7 +36,7 @@ public:
     void setPathTrain(string new_path_train);
     string getPathTest();
     void setPathTest(string new_path_test);
-    vector<string>& getResultsAlg();
+    vector<string> getResultsAlg();
     void setResultsAlg(vector<string> new_resultsAlg);
 
 };

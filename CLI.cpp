@@ -10,4 +10,10 @@ CLI::CLI() {
     //commands[3] = *new ClassifyDataCommand();
     //commands[4] = *new DisplayResultCommand();
     //commands[5] = *new DownloadsResultCommand();
+
+    cd = *new ClientData();
+}
+
+void CLI::start() {
+
 }

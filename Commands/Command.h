@@ -17,8 +17,9 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include "../DefaultIO.h"
-#include "StandradIO.h"
+#include "DefaultIO.h"
+#include "StandardIO.h"
+#include "ClientData.h"
 
 using namespace std;
 
@@ -26,9 +27,10 @@ class Command{
 protected:
     string description;
     DefaultIO dio;
+    ClientData* cd;
 public:
     Command();
-    void execute();
+    virtual void execute() = 0;
 };
 
 

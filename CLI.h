@@ -8,10 +8,16 @@
 #include "Command.h"
 #include "UploadCommand.h"
 #include "SettingCommand.h"
+#include "ClassifyDataCommand.h"
+#include "DisplayResultsCommand.h"
+#include "ClientData.h"
 
 class CLI {
-public:
+private:
     Command commands[6];
+    ClientData cd;
+public:
+
     CLI();
     void start();
 };
