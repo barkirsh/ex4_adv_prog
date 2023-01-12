@@ -7,7 +7,7 @@
 
 #include <map>
 
-#include "Distance.h"
+#include "../Distances/Distance.h"
 #include "DataSetsHandler.h"
 using namespace std;
 
