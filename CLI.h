@@ -6,19 +6,20 @@
 #define EX4_ADV_CLI_H
 
 #include "Command.h"
-#include "UploadCommand.h"
-#include "SettingCommand.h"
+#include "Commands/UploadCommand.h"
+#include "Commands/SettingCommand.h"
 #include "ClassifyDataCommand.h"
-#include "DisplayResultsCommand.h"
+#include "DisplayResultCommand.h"
 #include "ClientData.h"
 
 class CLI {
 private:
-    Command commands[6];
-    ClientData cd;
+    Command* commands[6];
+    ClientData *cd;
+    DefaultIO dio;
 public:
-
-    CLI();
+    CLI(DefaultIO dio);
+    void menu();
     void start();
 };
 

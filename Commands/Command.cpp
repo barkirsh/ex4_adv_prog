@@ -6,5 +6,5 @@
 
 
 Command::Command() {
-    this->dio = *new StandardIO();
 }
+

@@ -2,15 +2,15 @@
 // Created by barki on 1/12/2023.
 //
 
-
-
 #include "ClientData.h"
 
 using namespace std;
 
 ClientData::ClientData(){
     this->k = 5;
-    this->distance = "EUC";
+    this->distance = "AUC";
+    this->train_content = *new vector<string>;
+    this->test_content = *new vector<string>;
 }
 
 // getter for private member k
@@ -33,21 +33,21 @@ void ClientData::setDistance(string new_distance) {
     distance = new_distance;
 }
 // getter for private member path_train
-string ClientData::getPathTrain() {
-    return path_train;
+vector<string> ClientData::getContentTrain() {
+    return train_content;
 }
 // setter for private member path_train
-void ClientData::setPathTrain(string new_path_train) {
-    path_train = new_path_train;
+void ClientData::setContentTrain(vector<string> new_content_train) {
+    train_content = new_content_train;
 }
 
 // getter for private member path_test
-string ClientData::getPathTest() {
-    return path_test;
+vector<string> ClientData::getContentTest() {
+    return test_content;
 }
 // setter for private member path_test
-void ClientData::setPathTest(string new_path_test) {
-    path_test = new_path_test;
+void ClientData::setContentTest(vector<string> new_content_test) {
+    test_content = new_content_test;
 }
 
 // getter for private member resultsAlg

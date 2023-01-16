@@ -1,22 +1,59 @@
 # include "ClassifyDataCommand.h"
-# include "Knn.h"
-# include "DataSetHandler.h"
+
+ClassifyDataCommand::ClassifyDataCommand(ClientData *cd, DefaultIO dio) {
+    this->description = "Calculating the knn algorithm";
+    this->dio = dio;
+    this->cd = cd;
+}
+
 void ClassifyDataCommand:: execute(){
-
-    bool isUploaded = true; // for checikng if files were uploaded
-    // check if files csv were uploaded: , ask server if files were uploaded
-    if (isUploaded){
-        // applying algorithm on uploaded files -> in the end the test file will be classified with result
-
-        Knn algExecuter;
-        dio.write("classifying data complete");
+    if(this->cd->getContentTrain().empty() || this->cd->getContentTest().empty()) {
+        // if files weren't uploaded
+        dio.write("please upload data");
+        return;
     }
-    // if files werent uploaded
-    dio.write("please upload data");
 
+    // the vec from the client.
+
+    DataSetsHandler classFile; //our file handler, server data handler
+    map<vector<double>, string> classifiedMap;
+    try {
+        // create a map of the classified data
+        classifiedMap = classFile.createFileDataSet(this->cd->getContentTrain());
+    }  catch (const invalid_argument &ia) {
+        this->dio.write("invalid input");
+        return;
+    }
+
+    // the data set after distance calculations.
+    map <vector<double>, string> newDataSet;
+    vector<string> results = *new vector<string>;
+    Knn KnnAlg;
+
+    int counter = 1;
+    vector<double> unclassifiedVec;
+    // create a vector of classified data
+    for (string line: this->cd->getContentTest()) {
+        // create a vector - check validate:
+        try {
+            // create vector of double from the string vector - need to check the values.
+            unclassifiedVec = classFile.createVector(line);
+            //initializing new dataSet (with distances)
+            newDataSet = KnnAlg.dataSetForAlg(unclassifiedVec, classifiedMap, this->cd->getDistance(), this->cd->getK());
+            //calling our Knn algorithm
+            string resultKNN = KnnAlg.mostOccurType(KnnAlg.countTypesAppear(newDataSet, this->cd->getK()));
+
+            //insert the results vector the result and the counter
+            results.push_back(to_string(counter) + " " + resultKNN);
+            counter += 1;
+            // send the answer back to the client.
+        } catch (const invalid_argument &ia) {
+            this->dio.write("invalid input");
+            return;
+        }
+    }
+
+    this->cd->setResultsAlg(results);
+    dio.write("classifying data complete");
 }
 
-ClassifyDataCommand:: ClassifyDataCommand(string path_classified, string path_test, int k, string distance){
-    this.describtion = "classify data";
-
-}

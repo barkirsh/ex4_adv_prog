@@ -9,7 +9,13 @@
 
 class SettingCommand : public Command{
 public:
-    SettingCommand();
+    SettingCommand(ClientData* cd, DefaultIO dio);
+    void execute();
+    virtual bool KIsValid(string k);
+
+    string strToUpper(string word);
+
+    bool CurrStrIsDistance(string str);
 };
 
 

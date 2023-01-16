@@ -1,15 +1,15 @@
+
+#ifndef EX4_ClassifyDataCommand_H
+#define EX4_ClassifyDataCommand_H
+
+
 # include "Command.h"
-//# include ""
+#include "Knn.h"
+
 class ClassifyDataCommand : public Command{
 public:
+    ClassifyDataCommand(ClientData* cd, DefaultIO dio);
     void execute();
-    /**
-     * constructor of Classifying data
-     * @param path_classified
-     * @param path_test
-     * @param k
-     * @param distance
-     */
-  //  ClassifyDataCommand(string path_classified, string path_test, int k, string distance);
-
 };
+
+#endif //EX4_ClassifyDataCommand_H
