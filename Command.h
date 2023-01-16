@@ -27,7 +27,7 @@ class Command{
 protected:
     string description;
     DefaultIO dio;
-    ClientData* cd;
+
 public:
     Command();
     virtual void execute() = 0;
