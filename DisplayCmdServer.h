@@ -4,10 +4,12 @@
 
 #ifndef EX5_ADV_PROG_DISPLAYCMDSERVER_H
 #define EX5_ADV_PROG_DISPLAYCMDSERVER_H
+#include "Command.h"
 
+class DisplayCmdServer : public Command{
 
-class DisplayCmdServer {
-
+public:
+    void execute();
 };
 
 

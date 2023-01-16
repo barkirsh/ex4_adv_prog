@@ -4,10 +4,12 @@
 
 #ifndef EX5_ADV_PROG_SETTINGCMDSERVER_H
 #define EX5_ADV_PROG_SETTINGCMDSERVER_H
+#include "Command.h"
 
+class SettingCmdServer : public Command {
 
-class SettingCmdServer {
-
+public:
+    void execute();
 };
 
 

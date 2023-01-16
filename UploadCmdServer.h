@@ -4,12 +4,10 @@
 
 #ifndef EX5_ADV_PROG_UPLOADCMDSERVER_H
 #define EX5_ADV_PROG_UPLOADCMDSERVER_H
-#include "Commands/Command.h"
+#include "Command.h"
 
-class UploadCmdServer : Command {
-private:
-    string describtion = "upload command server";
-    DefaultIO dio;
+class UploadCmdServer : public Command {
+
 public:
     void execute(&ClientData cd);
 

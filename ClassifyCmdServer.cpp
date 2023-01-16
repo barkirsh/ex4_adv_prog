@@ -3,3 +3,7 @@
 //
 
 #include "ClassifyCmdServer.h"
+
+void ClassifyCmdServer :: execute(){
+
+}

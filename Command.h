@@ -29,7 +29,9 @@ protected:
     DefaultIO dio;
 
 public:
-    Command();
+    /**
+     * execute the command.
+     */
     virtual void execute() = 0;
 };
 

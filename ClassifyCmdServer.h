@@ -5,9 +5,11 @@
 #ifndef EX5_ADV_PROG_CLASSIFYCMDSERVER_H
 #define EX5_ADV_PROG_CLASSIFYCMDSERVER_H
 
+#include "Command.h"
+class ClassifyCmdServer : public Command{
 
-class ClassifyCmdServer {
-
+public:
+    void execute();
 };
 
 

@@ -4,10 +4,12 @@
 
 #ifndef EX5_ADV_PROG_DOWNLOADCMDSERVER_H
 #define EX5_ADV_PROG_DOWNLOADCMDSERVER_H
+#include "Command.h"
 
+class DownloadCmdServer : public Command{
 
-class DownloadCmdServer {
-
+public:
+    void execute();
 };
 
 
