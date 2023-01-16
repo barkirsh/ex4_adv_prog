@@ -1,20 +1,23 @@
-# include "DisplayResultCommad.h"
-
+# include "DisplayResultCommand.h"
+DisplayResultCommand::DisplayResultCommand(ClientData *cd, DefaultIO dio) {
+    this->description = "display results to client";
+    this->cd = cd;
+    this->dio = dio;
+}
 
 // displaying for each raw of test file it classification
-void DisplayResultCommad :: execute(){
-    bool isUploaded = true; // for checikng if files were uploaded , ask server if file were uploaded
-    bool isClassified = true; // ask server if files are classified
-    // check if files csv were uploaded:
-    if (isUploaded && isClassified){
-        // need to go through the file cad print "rowNo      classification"
-        cout<< "Done."<<endl;
-    }
-    else if (!isUploaded) {  // if files werent uploaded
+void  DisplayResultCommand:: execute() {
+    if (this->cd->getContentTest().empty() ||this->cd->getContentTrain().empty()) {
         dio.write("please upload data");
+        return;
     }
-   else (!isClassified){ // files werent classified
-       dio.write("data the classify please.");
-   }
+    if (this->cd->getResultsAlg().empty()) {
+        dio.write("please classify the data.");
+        return;
+    }
 
+    for (string s:this->cd->getResultsAlg()) {
+        dio.write(s);
+    }
+    dio.write("Done.");
 }

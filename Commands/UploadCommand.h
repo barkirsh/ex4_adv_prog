@@ -6,11 +6,12 @@
 #define EX4_UPLOADCOMMAND_H
 
 #include "Command.h"
-#include "StandardIO.h"
+#include "../StandardIO.h"
 
 class UploadCommand : public Command {
 public:
-    UploadCommand();
+    UploadCommand(ClientData* cd, DefaultIO dio);
+    void execute();
 };
 
 
