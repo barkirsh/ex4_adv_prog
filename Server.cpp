@@ -12,6 +12,8 @@
 #include <thread>
 
 #include "Knn.h"
+#include "Command.h"
+#include "Dio's/SocketIO.h"
 //#include ".../SocketIO.h"
 
 /**
@@ -22,7 +24,7 @@
 * @param out - the answer
 * @return a vector with the substring in it
 */
-void stringToParts(string &str, char delim, vector <string> &out) {
+void stringToParts(string &str, char delim, vector<string> &out) {
     size_t start;
     size_t end = 0;
     while ((start = str.find_first_not_of(delim, end)) != string::npos) {
@@ -37,9 +39,9 @@ void stringToParts(string &str, char delim, vector <string> &out) {
 * @param s - the string we want to convert
 * @return a vector with the substrings in it
 */
-vector <string> stringToVectorString(string s) {
+vector<string> stringToVectorString(string s) {
     char d = ' ';
-    vector <string> strVector;
+    vector<string> strVector;
     stringToParts(s, d, strVector);
 
     return strVector;
@@ -51,7 +53,7 @@ vector <string> stringToVectorString(string s) {
 * @param vec - the vector
 * @return the k
 */
-int kFromString(vector <string> &vec) {
+int kFromString(vector<string> &vec) {
     string k_string = vec.at(vec.size() - 1);
     vec.pop_back();
     return stoi(k_string);
@@ -63,13 +65,32 @@ int kFromString(vector <string> &vec) {
 * @param vec - the vector
 * @return the distance type
 */
-string distanceFromString(vector <string> &vec) {
+string distanceFromString(vector<string> &vec) {
     string dist_type = vec.at(vec.size() - 1);
     vec.pop_back();
     return dist_type;
 }
 
-void clientThread(int client_sock){
+void clientThread(int client_sock) {
+    cout << "created thread for client num" << client_sock << endl;
+    char buffer[4096];
+    int expected_data_len = sizeof(buffer);
+
+    bool closeSock = false; // finishing program - in the future happen when input is '-1'
+    int read_bytes;
+    int sent_bytes;
+    //files
+    ClientData cd = ClientData();
+    vector<double> inputVec;
+    SocketIO io = SocketIO(client_sock);
+    Command c = PrintCmd(io);
+    while (!closeSock) {
+
+    }
+}
+
+/*
+ * void clientThread(int client_sock){
     cout<<"created thread for client num"<<client_sock<<endl;
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
@@ -81,7 +102,7 @@ void clientThread(int client_sock){
     Knn KnnAlg;
     DataSetsHandler classFile; //our file handler, server data handler
 //    ifstream file("iris_classified.csv");// for now, keep the classified file
-string file = "iris_classified.csv";
+    string file = "iris_classified.csv";
     map <vector<double>, string> dataSet = classFile.createFileDataSet(classFile.read_csv(file),true);
     map <vector<double>, string> newDataSet;
     // the vec from the client.
@@ -138,13 +159,13 @@ string file = "iris_classified.csv";
         }
     cout<<"disconnecting client : "<<client_sock<<endl;
     }
-void initilizingServer(int server_pot){
+ * */
 
-}
+
 int main(int argc, char *argv[]) {
     // check that we got the right number of arguments.
 
-    if (argc !=  3) {
+    if (argc != 3) {
         perror("Wrong Input");
         exit(1);
     }
@@ -178,10 +199,10 @@ int main(int argc, char *argv[]) {
 
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
-
-    //files
-   // Knn KnnAlg;
- //   DataSetsHandler classFile; //our file handler, server data handler
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//files
+    // Knn KnnAlg;
+    //   DataSetsHandler classFile; //our file handler, server data handler
 
     // get the file path from the argv.
     ifstream file(argv[1]);
@@ -201,22 +222,21 @@ int main(int argc, char *argv[]) {
 
 
     // the file data set.
-   // map <vector<double>, string> dataSet = classFile.createFileDataSet(file);
+    // map <vector<double>, string> dataSet = classFile.createFileDataSet(file);
 
-thread forcli[5];
+    thread forcli[5];
     int num_of_client = 0;
     while (true) { // listener
         int client_sock = accept(sock, (struct sockaddr *) &client_sin, &addr_len);// accepting new client
         if (client_sock < 0) {
-           // forcli.join();
+            // forcli.join();
             perror("error accepting client client sock res<0");
         }
-        if (num_of_client == 3){
+        if (num_of_client == 3) {
             break;
-        }
-        else{ // need to create new thread and call function of thread
+        } else { // need to create new thread and call function of thread
 
-            forcli[num_of_client] = thread(clientThread,client_sock);
+            forcli[num_of_client] = thread(clientThread, client_sock);
             num_of_client++;
         }
     }
@@ -227,5 +247,3 @@ thread forcli[5];
     close(sock);
     return 0;
 }
-
-

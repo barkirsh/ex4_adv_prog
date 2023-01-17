@@ -2,8 +2,8 @@
 // Created by barki on 1/17/2023.
 //
 
-#include "DisplayCmdServer.h"
+#include "../Command.h"
 DisplayCmdServer:: DisplayCmdServer(DefultIO io){
-    this->describtion = "display- server";
+    this->description = "display- server";
     this->dio = io;
 }

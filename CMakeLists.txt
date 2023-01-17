@@ -1,6 +1,9 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.16)
 project(ex5_adv_prog)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(ex5_adv_prog ClassifyDataCommand.h Commands/ClassifyDataCommand.h Commands/Command.cpp Commands/Command.h DefaultIO.cpp StandardIO.cpp StandardIO.h StandardIO.h Commands/DisplayResultCommand.cpp Commands/ClassifyDataCommand.cpp Distances/Can.cpp Commands/DisplayResultsCommand.h "lastProjectFiles - Knn,DataSetHandle,Validation,Server,Client/Knn.h" Commands/ClientData.cpp Commands/ClientData.h ClassifyCmdServer.cpp ClassifyCmdServer.h ClassifyCmdServer.cpp UploadCmdServer.h DownloadCmdServer.h SettingCmdServer.h DisplayCmdServer.h)
+add_executable(client Client.cpp ValidationClient.cpp)
+add_executable(server Server.cpp DataSetsHandler.cpp
+        Knn.cpp ValidationClient.cpp Command.h PrintCmd.cpp
+        Dio's/SocketIO.cpp Dio's/DefaultIO.cpp)

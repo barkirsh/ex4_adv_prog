@@ -2,10 +2,11 @@
 // Created by barki on 1/16/2023.
 //
 
-#include "UploadCmdServer.h"
+#include "../Command.h"
 
-UploadedCmdServer::UploadedCmdServer(DefultIO io) {
-    this->describtion = "upload cmd - server";
+
+UploadCmdServer::UploadCmdServer(DefaultIO io) {
+    this->description = "upload cmd - server";
     this->dio = io;
 }
 

@@ -8,7 +8,7 @@
 #include "Command.h"
 #include "Commands/UploadCommand.h"
 #include "Commands/SettingCommand.h"
-#include "ClassifyDataCommand.h"
+#include "Commands/ClassifyDataCommand.h"
 #include "DisplayResultCommand.h"
 #include "ClientData.h"
 
