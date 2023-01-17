@@ -17,24 +17,72 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include "DefaultIO.h"
-#include "StandardIO.h"
-#include "SocketIO.h"
+#include "Dio's/DefaultIO.h"
+#include "Dio's/StandardIO.h"
+#include "Dio's/SocketIO.h"
 #include "ClientData.h"
 
 using namespace std;
 
-class Command{
+class Command {
 protected:
     string description;
-    DefaultIO dio;
+    DefaultIO &dio;
 
 public:
+    explicit Command(DefaultIO &dio) : dio(dio), description("Default Command") {}
+
     /**
      * execute the command.
      */
     virtual void execute(ClientData &cd) = 0;
 };
 
+class PrintCmd : public Command {
+public:
+    void execute(ClientData &cd);
+
+    PrintCmd(DefaultIO &dio);
+};
+
+class UploadCmdServer : public Command {
+
+public:
+    UploadCmdServer(DefaultIO &dio);
+
+    void execute(ClientData &cd);
+
+};
+
+class SettingCmdServer : public Command {
+
+public:
+    SettingCmdServer(DefaultIO &dio);
+
+    void execute(ClientData &cd);
+};
+
+class ClassifyCmdServer : public Command {
+
+public:
+    ClassifyCmdServer(DefaultIO &dio);
+
+    void execute(ClientData &cd);
+};
+
+class DisplayCmdServer : public Command {
+
+public:
+    DisplayCmdServer(DefaultIO &dio);
+
+    void execute(ClientData &cd);
+};
+
+class DownloadCmdServer : public Command {
+
+public:
+
+    void execute(ClientData &cd);
+};
 
 #endif //EX4_COMMAND_H

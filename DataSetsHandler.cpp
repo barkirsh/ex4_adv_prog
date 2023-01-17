@@ -3,25 +3,26 @@
 #include <sstream>
 
 // the function gets a vector that contains the lines from the file and return a map
-vector <string> DataSetsHandler:: read_csv(const string &filename){
+vector <string> DataSetsHandler::read_csv(const string &filename) {
     ifstream file(filename);
-    vector<vector<string>> data;
+    vector <vector<string>> data;
     string line;
-    while(getline(file,line)){
-        vector<string> fields;
-        char* cstr = new char[line.()+1];
-        strcpy(cstr,line.c_str());
-        char* token = strtok(cstr,",");
-        while (token != NULL){
+    while (getline(file, line)) {
+        vector <string> fields;
+        char *cstr = new char[line.() + 1];
+        strcpy(cstr, line.c_str());
+        char *token = strtok(cstr, ",");
+        while (token != NULL) {
             fields.push_back(token);
-            token = strtok(NULL,",");
+            token = strtok(NULL, ",");
         }
         data.push_back(fields);
         delete[] cstr;
     }
     return data;
 }
-map <vector<double>, string> DataSetsHandler::createFileDataSet(vector<string> dataVec, bool isClassified) {
+
+map <vector<double>, string> DataSetsHandler::createFileDataSet(vector <string> dataVec, bool isClassified) {
     // Create an empty map
     map <vector<double>, string> m;
     int lineCounter = 0;
@@ -34,7 +35,7 @@ map <vector<double>, string> DataSetsHandler::createFileDataSet(vector<string> d
     for (string line: dataVec) {
         vector<double> vec; // vector that we get from line that v(0) = dist, this vector will be inserted into map.
 
-        lineCounter ++;
+        lineCounter++;
         // Parse the line to extract the vector and the string
         stringstream ss(line);
 
@@ -65,8 +66,7 @@ map <vector<double>, string> DataSetsHandler::createFileDataSet(vector<string> d
         if (isClassified) {
             value = temp.back();
             temp.clear();
-        }
-        else {
+        } else {
             value = "unClassified";
         }
         // Insert the vector and the string into the map

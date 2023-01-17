@@ -2,10 +2,10 @@
 // Created by barki on 1/17/2023.
 //
 
-#include "SettingCmdServer.h"
+#include "../Command.h"
 
-SettingCmdServer::SettingCmdServer(DefultIO io){
-    this->descrbtion = "setting - server";
+SettingCmdServer::SettingCmdServer(DefaultIO io){
+    this->description = "setting - server";
     this->dio = io;
 }
 void SettingCmdServer:: execute(ClientData &cd){

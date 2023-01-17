@@ -3,8 +3,8 @@
 #define EX4_ClassifyDataCommand_H
 
 
-# include "Command.h"
-#include "Knn.h"
+# include "../Command.h"
+#include "../Knn.h"
 
 class ClassifyDataCommand : public Command{
 public:
