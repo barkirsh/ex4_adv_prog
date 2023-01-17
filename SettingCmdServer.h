@@ -9,7 +9,8 @@
 class SettingCmdServer : public Command {
 
 public:
-    void execute();
+    SettingCmdServer(DefultIO io);
+    void execute(ClientData &cd);
 };
 
 

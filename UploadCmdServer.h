@@ -9,7 +9,8 @@
 class UploadCmdServer : public Command {
 
 public:
-    void execute(&ClientData cd);
+    UploadCmdServer(DefultIO io);
+    void execute(ClientData &cd);
 
 };
 

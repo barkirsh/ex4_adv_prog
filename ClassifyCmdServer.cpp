@@ -3,7 +3,10 @@
 //
 
 #include "ClassifyCmdServer.h"
-
-void ClassifyCmdServer :: execute(){
-
+ClassifyCmdServer :: ClassifyCmdServer(DefultIO &dio){
+    this->dio = dio;
+    this->describtion = "classify cmd - server";
+}
+void ClassifyCmdServer :: execute(ClientData &cd){
+// we will call here to the knn alg handler and update the result db
 }

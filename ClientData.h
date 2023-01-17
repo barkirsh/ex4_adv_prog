@@ -25,7 +25,7 @@ private:
     string distance; //= "AUC"; // defult distance 'AUC'
     vector<string> train_content; // classified file
     vector<string> test_content; // unclassified file
-    vector<string> resultsAlg;
+    vector<string> resultsAlg;  // results
 public:
     ClientData();
     // costructor - defultive

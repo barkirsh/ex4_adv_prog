@@ -9,7 +9,7 @@
 class DisplayCmdServer : public Command{
 
 public:
-    void execute();
+    void execute(ClientData &cd);
 };
 
 

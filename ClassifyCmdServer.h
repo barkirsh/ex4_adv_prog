@@ -9,7 +9,8 @@
 class ClassifyCmdServer : public Command{
 
 public:
-    void execute();
+    ClassifyCmdServer(DefaultIO &dio);
+    void execute(ClientData &cd);
 };
 
 

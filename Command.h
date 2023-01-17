@@ -19,6 +19,7 @@
 
 #include "DefaultIO.h"
 #include "StandardIO.h"
+#include "SocketIO.h"
 #include "ClientData.h"
 
 using namespace std;
@@ -32,7 +33,7 @@ public:
     /**
      * execute the command.
      */
-    virtual void execute() = 0;
+    virtual void execute(ClientData &cd) = 0;
 };
 
 

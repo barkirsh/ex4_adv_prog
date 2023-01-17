@@ -9,7 +9,8 @@
 class DownloadCmdServer : public Command{
 
 public:
-    void execute();
+
+    void execute(ClientData &cd);
 };
 
 
