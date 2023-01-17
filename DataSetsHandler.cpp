@@ -3,24 +3,7 @@
 #include <sstream>
 
 // the function gets a vector that contains the lines from the file and return a map
-vector <string> DataSetsHandler::read_csv(const string &filename) {
-    ifstream file(filename);
-    vector <vector<string>> data;
-    string line;
-    while (getline(file, line)) {
-        vector <string> fields;
-        char *cstr = new char[line.() + 1];
-        strcpy(cstr, line.c_str());
-        char *token = strtok(cstr, ",");
-        while (token != NULL) {
-            fields.push_back(token);
-            token = strtok(NULL, ",");
-        }
-        data.push_back(fields);
-        delete[] cstr;
-    }
-    return data;
-}
+
 
 map <vector<double>, string> DataSetsHandler::createFileDataSet(vector <string> dataVec, bool isClassified) {
     // Create an empty map

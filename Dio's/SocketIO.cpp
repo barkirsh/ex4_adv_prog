@@ -3,11 +3,12 @@
 //
 
 #include "SocketIO.h"
-SocketIO:: SocketIO(int client_socket){
+
+SocketIO::SocketIO(int client_socket) {
     this->client_socket = client_socket;
 }
 
-void SocketIO::write(const std::string &message) {
+void SocketIO::write(std::string &message) {
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
     int sent_bytes;
@@ -20,6 +21,7 @@ void SocketIO::write(const std::string &message) {
     }
 
 }
+
 string SocketIO::read() {
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
@@ -38,4 +40,5 @@ string SocketIO::read() {
     } else {
         return buffer;
     }
+    return "";
 }
