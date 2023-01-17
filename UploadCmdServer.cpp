@@ -19,7 +19,9 @@ void UploadCmdServer::execute(ClientData &cd) {
         curr_line = this->dio.read();
         cd->train_content.push_back(curr_line); // push curr line to classifiy database (strings vector)
     }
-// seding client request for uploading test file
+    // DataSetHandler dsh; dsh.createDataSetFile(cd->train_content,true);
+
+    // seding client request for uploading test file
     this->dio.write("Please upload your local test CSV file.");
     // recieve test file data from client
     curr_line = this->dio.read();// = this->dio.read();
@@ -28,6 +30,9 @@ void UploadCmdServer::execute(ClientData &cd) {
         curr_line = this->dio.read();
         cd->test_content.push_back(curr_line); // push curr line to classifiy database (strings vector)
     }
-// completed uploading
+
+    //dsh.createDataSetFile(cd->train_content,true);
+
+    // completed uploading
     this->dio.write("Done.");
 }

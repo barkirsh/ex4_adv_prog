@@ -3,3 +3,7 @@
 //
 
 #include "DisplayCmdServer.h"
+DisplayCmdServer:: DisplayCmdServer(DefultIO io){
+    this->describtion = "display- server";
+    this->dio = io;
+}

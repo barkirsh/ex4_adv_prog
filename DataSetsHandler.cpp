@@ -3,7 +3,7 @@
 #include <sstream>
 
 // the function gets a vector that contains the lines from the file and return a map
-map <vector<double>, string> DataSetsHandler::createFileDataSet(vector<string> dataVec) {
+map <vector<double>, string> DataSetsHandler::createFileDataSet(vector<string> dataVec, bool isClassified) {
     // Create an empty map
     map <vector<double>, string> m;
     int lineCounter = 0;
@@ -44,8 +44,13 @@ map <vector<double>, string> DataSetsHandler::createFileDataSet(vector<string> d
             }
         }
         // the string type
-        value = temp.back();
-        temp.clear();
+        if (isClassified) {
+            value = temp.back();
+            temp.clear();
+        }
+        else {
+            value = "unClassified";
+        }
         // Insert the vector and the string into the map
         m.emplace(vec, value);
     }

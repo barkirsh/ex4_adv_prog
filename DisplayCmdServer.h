@@ -9,6 +9,7 @@
 class DisplayCmdServer : public Command{
 
 public:
+    DisplayCmdServer(DefultIO io);
     void execute(ClientData &cd);
 };
 
