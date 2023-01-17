@@ -10,6 +10,8 @@ using namespace std;
 
 class DataSetsHandler {
 public:
+    // create vector of strings, each element is a raw on file
+    vector <string> read_csv(const string &filename);
 
     /**
     * funcName: createDataset
@@ -17,7 +19,7 @@ public:
     * @param file - the file we create from our data base
     * @return map, the data base
     */
-    map <vector<double>, string> createFileDataSet(vector<string> vec, bool isClassified);
+    map <vector<double>, string> createFileDataSet(vector <string> vec, bool isClassified);
 
     /**
     * server creating vector based on a given string that we know is correct to be convert to vector
@@ -31,7 +33,7 @@ public:
    * @param vec_str - vector of strings
    * @return a vector of double
    */
-    vector<double> createVectorFromVectorString(vector<string> vec_str);
+    vector<double> createVectorFromVectorString(vector <string> vec_str);
 
     /**
  * funcName: checkInput
