@@ -80,9 +80,9 @@ void clientThread(int client_sock){
     //files
     Knn KnnAlg;
     DataSetsHandler classFile; //our file handler, server data handler
-    ifstream file("iris_classified.csv");// for now, keep the classified file
-
-    map <vector<double>, string> dataSet = classFile.createFileDataSet(file,true);
+//    ifstream file("iris_classified.csv");// for now, keep the classified file
+string file = "iris_classified.csv";
+    map <vector<double>, string> dataSet = classFile.createFileDataSet(classFile.read_csv(file),true);
     map <vector<double>, string> newDataSet;
     // the vec from the client.
     vector<double> inputVec;
