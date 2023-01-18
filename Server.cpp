@@ -234,7 +234,7 @@ int main(int argc, char *argv[]) {
     // the file data set.
     // map <vector<double>, string> dataSet = classFile.createFileDataSet(file);
 
-    thread forcli[5];
+    //thread forcli[5];
     int num_of_client = 0;
     while (true) { // listener
         int client_sock = accept(sock, (struct sockaddr *) &client_sin, &addr_len);// accepting new client
@@ -246,14 +246,14 @@ int main(int argc, char *argv[]) {
             break;
         } else { // need to create new thread and call function of thread
 
-            forcli[num_of_client] = thread(clientThread, client_sock);
+           // forcli[num_of_client] = thread(clientThread, client_sock);
             num_of_client++;
         }
     }
     //forcli.join();
-    forcli[0].join();
-    forcli[1].join();
-    forcli[2].join();
+   // forcli[0].join();
+   // forcli[1].join();
+   // forcli[2].join();
     close(sock);
     return 0;
 }

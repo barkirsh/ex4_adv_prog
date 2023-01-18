@@ -9,7 +9,7 @@
 #include "Commands/UploadCommand.h"
 #include "Commands/SettingCommand.h"
 #include "Commands/ClassifyDataCommand.h"
-#include "DisplayResultCommand.h"
+#include "Commands/DisplayResultCommand.h"
 #include "ClientData.h"
 
 class CLI {
