@@ -83,10 +83,11 @@ void clientThread(int client_sock) {
     ClientData cd = ClientData();
     vector<double> inputVec;
     SocketIO io = SocketIO(client_sock);
-    Command c = PrintCmd(io);
+    Command* c = new PrintCmd(io);
     while (!closeSock) {
-
+        c->execute(cd);
     }
+    delete c;
 }
 
 /*
@@ -161,6 +162,15 @@ void clientThread(int client_sock) {
     }
  * */
 
+vector<string> read_csv(const string& filename) {
+    vector<string> data;
+    ifstream file(filename);
+    string line;
+    while (getline(file, line)) {
+        data.push_back(line);
+    }
+    return data;
+}
 
 int main(int argc, char *argv[]) {
     // check that we got the right number of arguments.

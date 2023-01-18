@@ -7,8 +7,8 @@
 using namespace std;
 
 ClientData::ClientData(){
-    this->k = 5;
-    this->distance = "AUC";
+    this->k = 5; // start default value k
+    this->distance = "AUC"; // start default value distance
     this->train_content = *new vector<string>;
     this->test_content = *new vector<string>;
 }
