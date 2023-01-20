@@ -52,7 +52,6 @@ void UploadCommand::execute(){
 
     // send to server
     this->cd->setContentTest(testVec);
-
     dio.write("Upload complete.");
 }
 

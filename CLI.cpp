@@ -24,9 +24,9 @@ void CLI::menu() {
 }
 
 void CLI::start() {
-    string input;
-    menu();
-    input = this->dio.read();
+    //string input;
+    menu(); // write menu first time
+    string input = this->dio.read();
     int option;
     bool isLegal = true;
     while (input != "8") {
@@ -44,6 +44,7 @@ void CLI::start() {
         }
 
         menu();
+        //input = "";
         input = this->dio.read();
     }
     deleteAll();
