@@ -35,7 +35,7 @@ class UploadClientCommand : public ClientCommand {
 public:
     explicit UploadClientCommand(DefaultIO &dio);
     void execute() override;
-    bool fileHandler(ifstream &file);
+    void fileHandler(ifstream &file);
 };
 
 class SettingClientCommand : public ClientCommand{

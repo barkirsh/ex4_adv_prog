@@ -40,11 +40,11 @@ void UploadCommand::execute(){
     // the content of the train file
     string test = dio.read();
     this->dio.write("ok");
+
     while (test != "upload complete") {
         if (test == "error") {
             return;
         }
-
         testVec.push_back(test);
         test = dio.read();
         this->dio.write("ok");

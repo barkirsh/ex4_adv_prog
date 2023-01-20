@@ -15,7 +15,7 @@ void SettingCommand::execute() {
                  this->cd->getDistance();
     dio.write(str);
 
-    string change = dio.read();
+    string change = dio.read(); // reading change
 
     if (change.empty()) {
         return;
@@ -28,18 +28,30 @@ void SettingCommand::execute() {
         ss >> k;
         if (!KIsValid(k)) {
             dio.write("invalid value for K");
-            return;
+            dio.read();
+            ss >> distance;
+            if (!CurrStrIsDistance(distance)) {
+                dio.write("invalid value for metric");
+                dio.read();
+                return;
+            }
+            dio.write("metric is ok");
+            dio.read();
+
+        } else {
+            dio.write("k is ok");
+            dio.read();
+            ss >> distance;
+            if (!CurrStrIsDistance(distance)) {
+                dio.write("invalid value for metric");
+                dio.read();
+                return;
+            }
+            dio.write("metric is ok");
+            dio.read();
+
+
         }
-
-        ss >> distance;
-        if (!CurrStrIsDistance(distance)) {
-            dio.write("invalid value for metric");
-            return;
-        }
-
-        dio.write("k is ok");
-        dio.write("metric is ok");
-
         this->cd->setK(stoi(k));
         this->cd->setDistance(distance);
         return;
@@ -68,6 +80,9 @@ string SettingCommand::strToUpper(string word) {
 
 
 bool SettingCommand::CurrStrIsDistance(string str) {
+    if(str.empty()){
+        return false;
+    }
     str = strToUpper(str);
     if (str == "AUC") {
         return true;

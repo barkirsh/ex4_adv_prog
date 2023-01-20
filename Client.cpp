@@ -124,6 +124,7 @@ int main(int argc, char *argv[]){
         string str;
         getline(cin,str);
 
+        dio.write(str);
         c.commands[stoi(str)]->execute();
     }
 }
