@@ -4,6 +4,10 @@
 
 #include "ClientCommand.h"
 
-DownloadResultClientCommand::DownloadResultClientCommand(ClientData *cd, DefaultIO dio) {
-    this->dio
+DownloadResultClientCommand::DownloadResultClientCommand(DefaultIO &dio) : ClientCommand(dio) {
+    //this->dio
 }
+
+void DownloadResultClientCommand::execute() {
+
+};

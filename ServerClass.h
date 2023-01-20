@@ -5,7 +5,7 @@
 #ifndef EX4_ADV_SERVERCLASS_H
 #define EX4_ADV_SERVERCLASS_H
 
-#include "SocketIO.h"
+//#include "SocketIO.h"
 #include "CLI.h"
 
 class ServerClass {

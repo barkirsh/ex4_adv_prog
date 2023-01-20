@@ -23,8 +23,8 @@ class DefaultIO {
 public:
     //DefaultIO();
 
-    virtual string read();
-    void write(string str);
+    virtual string read() =0 ;
+    virtual void write(const std::string &message)= 0;
 };
 
 

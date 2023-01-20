@@ -1,6 +1,6 @@
 # include "Command.h"
 //#include "../DataSetsHandler.h"
-#include "../Knn.h"
+#include "Knn.h"
 
 ClassifyDataCommand::ClassifyDataCommand(DefaultIO &dio1, ClientData *cd) : Command(dio1) {
     this->description = "Calculating the knn algorithm";

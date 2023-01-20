@@ -5,8 +5,8 @@
 #include <fstream>
 #include "ClientCommand.h"
 
-UploadClientCommand::UploadClientCommand(DefaultIO dio) {
-    this->dio = dio;
+UploadClientCommand::UploadClientCommand(DefaultIO &dio) : ClientCommand(dio) {
+//    this->dio = dio;
 }
 
 bool UploadClientCommand::fileHandler(ifstream &file) {

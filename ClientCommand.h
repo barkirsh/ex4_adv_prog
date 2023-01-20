@@ -14,16 +14,18 @@
 #include <cstring>
 #include <sstream>
 
-#include "../DefaultIO.h"
-#include "../StandardIO.h"
-#include "../ClientData.h"
+#include "DefaultIO.h"
+#include "StandardIO.h"
+#include "ClientData.h"
 
 using namespace std;
 
 class ClientCommand{
 protected:
+    ClientCommand(DefaultIO &dio1);
+
     string description;
-    DefaultIO dio;
+    DefaultIO &dio;
     public:
     ClientCommand();
     virtual void execute() = 0;
@@ -31,32 +33,32 @@ protected:
 
 class UploadClientCommand : public ClientCommand {
 public:
-    explicit UploadClientCommand(DefaultIO dio);
+    explicit UploadClientCommand(DefaultIO &dio);
     void execute() override;
     bool fileHandler(ifstream &file);
 };
 
 class SettingClientCommand : public ClientCommand{
 public:
-    explicit SettingClientCommand(DefaultIO dio);
+    explicit SettingClientCommand(DefaultIO &dio);
     void execute() override;
 };
 
 class ClassifyDataClientCommand : public ClientCommand{
 public:
-    explicit ClassifyDataClientCommand(DefaultIO dio);
+    explicit ClassifyDataClientCommand(DefaultIO &dio);
     void execute() override;
 };
 
 class DisplayResultClientCommand : public ClientCommand{
 public:
-    explicit DisplayResultClientCommand(DefaultIO dio);
+    explicit DisplayResultClientCommand(DefaultIO &dio);
     void execute() override;
 };
 
 class DownloadResultClientCommand : public ClientCommand{
 public:
-    explicit DownloadResultClientCommand(DefaultIO dio);
+    explicit DownloadResultClientCommand(DefaultIO &dio);
     void execute() override;
 };
 

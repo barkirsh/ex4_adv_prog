@@ -7,19 +7,19 @@
 
 #include "DefaultIO.h"
 #include "SocketIO.h"
-#include "clientCommands/ClientCommand.h"
+#include "ClientCommand.h"
 
 using namespace std;
 
 class Client {
-    DefaultIO dio;
+    DefaultIO &dio;
     int socket;
 
 
 public:
     const int port; // port number
     ClientCommand* commands[6]{};
-    Client(int socket, DefaultIO dio);
+    Client(int socket, DefaultIO &dio);
     void setSocket (int socket);
     int getSocket();
 };

@@ -4,8 +4,8 @@
 
 #include "ClientCommand.h"
 
-SettingClientCommand::SettingClientCommand(DefaultIO dio) {
-    this->dio = dio;
+SettingClientCommand::SettingClientCommand(DefaultIO &dio):ClientCommand(dio) {
+    //this->dio = dio;
 }
 
 void SettingClientCommand::execute() {

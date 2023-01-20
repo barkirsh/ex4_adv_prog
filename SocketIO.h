@@ -25,7 +25,7 @@ public:
     /**
      * write messege to socket
      */
-    void write(const std::string &message);
+    void write(const std::string &message) override;
 
     ~SocketIO();
 };

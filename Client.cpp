@@ -4,8 +4,8 @@
 
 #include <fstream>
 #include "Client.h"
-Client::Client(int socket,DefaultIO dio) : port(0) {
-    this->dio = dio;
+Client::Client(int socket,DefaultIO &dio1) : port(0), dio(dio1) {
+//    this->dio = dio;
     this->socket = socket;
 
     this->commands[1] = new UploadClientCommand(this->dio);
@@ -83,19 +83,20 @@ int main(int argc, char *argv[]){
     if (!checkArgs(argc,argv)) {
         exit(1);
     }
-
-    DefaultIO dio = *new StandardIO;
-    Client c = *new Client(1,dio);
-
-    const char *ip_address = argv[1];
-    int port_no = stoi(argv[2]);
-
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         // if the socket creation fails, print an error message
         perror("error creating socket");
         exit(1);
     }
+
+    SocketIO dio(sock);// = new SocketIO(sock);
+    Client c = *new Client(sock,dio);
+
+    const char *ip_address = argv[1];
+    int port_no = stoi(argv[2]);
+
+
 
     c.setSocket(sock);
 
