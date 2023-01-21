@@ -21,9 +21,10 @@ using namespace std;
 
 class DefaultIO {
 public:
-    DefaultIO();
-    string read();
-    void write(string str);
+    //DefaultIO();
+
+    virtual string read() =0 ;
+    virtual void write(const std::string &message)= 0;
 };
 
 

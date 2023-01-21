@@ -8,12 +8,12 @@ using namespace std;
 
 StandardIO::StandardIO() {}
 
-string StandardIO::read() {
+string DefaultIO::read() {
     string str;
     getline(cin,str);
     return str;
 }
 
-void StandardIO::write(int str) {
+void DefaultIO::write(string str) {
     cout << str << endl;
 }

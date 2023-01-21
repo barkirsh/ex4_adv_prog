@@ -61,13 +61,7 @@ bool CurrStrIsDistance(string str);
  */
 bool checkStrVector(string str);
 
-/**
- * funcName: checkInput
- * This function check if a string is a number (int or double)
- * and return a boolean answer.
- * @param word - a string
- */
-bool checkInput(string word);
+
 
 
 #endif //EX3_VALIDATION_CLIENT_H

@@ -3,5 +3,3 @@
 //
 
 #include "DefaultIO.h"
-
-DefaultIO::DefaultIO() {}

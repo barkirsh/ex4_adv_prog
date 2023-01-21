@@ -1,124 +1,130 @@
-// Bar Kirshenboim & Noa Dolev
+//
+// Created by oem on 1/19/23.
+//
 
-#include <iostream>
-#include <sys/socket.h>
-#include <stdio.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <string.h>
-#include <sstream>
 #include <fstream>
+#include "Client.h"
+Client::Client(int socket,DefaultIO &dio1) : port(0), dio(dio1) {
+//    this->dio = dio;
+    this->socket = socket;
 
+    this->commands[1] = new UploadClientCommand(this->dio);
+    this->commands[2] = new SettingClientCommand(this->dio);
+    this->commands[3] = new ClassifyDataClientCommand(this->dio);
+    this->commands[4] = new DisplayResultClientCommand(this->dio);
+}
 
-#include "ValidationClient.h"
+void Client::setSocket(int socket) {
+    this->socket = socket;
+}
 
-using namespace std;
+int Client::getSocket() {
+    return this->socket;
+}
 
-int main(int argc, char *argv[]) {
+bool isValidIP(const string& str) {
+    // Split the string by the '.' delimiter
+    stringstream ss(str);
+    string token;
+    int count = 0;
+    while (getline(ss, token, '.')) {
+        ++count;
+        // If there are more or less than 4 tokens, it is not a valid IP address
+        if (count > 4) {
+            return false;
+        }
+        try {
+            // Check that each token is a number between 0 and 255
+            int num = stoi(token);
+            if (num < 0 || num > 255) {
+                return false;
+            }
+        }
+        catch (...) {
+            return false;
+        }
+    }
+    // Return true if there are exactly 4 tokens
+    return count == 4;
+}
+
+bool isValidPort(const string& str) {
+    int portNum;
+    try {
+        portNum = stoi(str);
+        if (portNum < 1024 || portNum > 65535) {
+            return false;
+        }
+    }
+    catch (const invalid_argument &ia) {
+        return false;
+    }
+    return true;
+}
+
+bool checkArgs (int argc, char *argv[]) {
     // check that we got the right number of arguments.
     if (argc != 3) {
         perror("Wrong Input");
         exit(1);
     }
-    // Parse command-line arguments
-    char *ip_address = argv[1]; // IP address of server - this computer: "127.0.0.1"
-    if (!isValidIP(argv[1])) {
-        perror("invalid ip number");
+    bool checkIP = isValidIP(argv[1]);
+    if (checkIP) {
+        bool checkPort = isValidPort(argv[2]);
+        if (checkPort) {
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+int main(int argc, char *argv[]){
+    if (!checkArgs(argc,argv)) {
         exit(1);
     }
-    if (!isValidPort(argv[2])) {
-        perror("invalid port number");
-        exit(1);
-
-    }
-    int port_no = stoi(argv[2]); // Port number of server
-
-
-    // Create a socket
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
-        // Socket creation failed
+        // if the socket creation fails, print an error message
         perror("error creating socket");
         exit(1);
-
     }
-    try {
-        // Set up sockaddr_in structure with server information
-        struct sockaddr_in sin;
-        memset(&sin, 0, sizeof(sin)); // Zero out memory occupied by sin
-        sin.sin_family = AF_INET;
-        sin.sin_addr.s_addr = inet_addr(ip_address);
-        sin.sin_port = htons(port_no);
-        if (connect(sock, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
-            perror("error connecting to server");
-            exit(1);
 
-        }
-    }
-    catch (...) {
-        perror("error with ip ");
+    SocketIO dio(sock);// = new SocketIO(sock);
+    Client c = *new Client(sock,dio);
+
+    const char *ip_address = argv[1];
+    int port_no = stoi(argv[2]);
+
+
+
+    c.setSocket(sock);
+
+    // set up the address of the server we want to connect to
+    struct sockaddr_in sin;
+    memset(&sin, 0, sizeof(sin)); // zero out the memory in sin
+    sin.sin_family = AF_INET; // set the address family to AF_INET (IPv4)
+    sin.sin_addr.s_addr = inet_addr(ip_address); // set the IP address
+    sin.sin_port = htons(port_no); // set the port number
+
+    // try to connect to the server
+    if (connect(c.getSocket(), (struct sockaddr *) &sin, sizeof(sin)) < 0) {
+        // if the connection fails, print an error message
+        perror("error connecting to server");
         exit(1);
-
     }
-    bool inputIsValid;
-    bool keepGoing = true;
-    char data_addr[4096];
-    char buffer[4096];
-    string dataToSend;
 
-    while (keepGoing) {
-        memset(buffer, 0, sizeof buffer);
 
-        // receiving from user string of input : "vector distType k", get message from user
-        std::getline(std::cin, dataToSend);
+    while (true) {
+        string fromServer = dio.read();
 
-        dataToSend = strToUpper(dataToSend);
-        if (dataToSend == "-1") {
-            keepGoing = false;
-            continue;
-        }
-        // checking the input is valid
-        inputIsValid = checkInputClient(dataToSend);
+        // print the message
+        cout << fromServer << endl;
 
-        if (!inputIsValid) {
-            cout << "invalid input" << endl;
-            continue;
-        }
-            // fit the input, so we will be able to send it to server (char[]) only if valid
-        else { // input that was entered is valid, so we will send it to server
-            // Convert message to char array
-            strcpy(data_addr, dataToSend.c_str());
-            // Send message to server
-            int data_len = strlen(data_addr);
-            int sent_bytes = send(sock, data_addr, data_len, 0);
-            if (sent_bytes < 0) {
-                // Error occurred while sending data
-                perror("Error occurred while sending data");
-                exit(1);
+        string str;
+        getline(cin,str);
 
-            }
-            // Receive response from server
-            int expected_data_len = sizeof(buffer);
-            int read_bytes = recv(sock, buffer, expected_data_len, 0);
-            if (read_bytes == 0) {
-                // Connection is closed
-                cout << "Connection is closed from server" << endl;
-                break;
-            } else if (read_bytes < 0) {
-                // Error occurred while receiving data
-                perror("Error occurred while receiving data");
-                exit(1);
-
-            } else {
-                // Print response from server, result of knn in our case
-                cout << buffer << endl;
-            }
-        }
+        dio.write(str);
+        c.commands[stoi(str)]->execute();
     }
-    // Close socket
-    close(sock);
-
-
-    return 0;
 }

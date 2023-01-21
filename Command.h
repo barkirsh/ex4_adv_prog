@@ -13,23 +13,57 @@
 #include <string.h>
 #include <cstring>
 #include <sstream>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 
-#include "DefaultIO.h"
-#include "StandradIO.h"
+//#include "DefaultIO.h"
+#include "SocketIO.h"
+#include "ClientData.h"
 
 using namespace std;
 
 class Command{
 protected:
+
     string description;
-    DefaultIO dio;
+    DefaultIO &dio;
+    ClientData* cd;
 public:
-    Command();
-    void execute();
+    Command(DefaultIO &dio1);
+
+    virtual void execute() = 0;
 };
 
+class ClassifyDataCommand : public Command{
+public:
+    ClassifyDataCommand(DefaultIO &dio1, ClientData *cd);
+    void execute() override;
+};
+
+class DisplayResultCommand : public Command{
+public:
+    DisplayResultCommand(DefaultIO &dio1, ClientData *cd);
+    void execute() override;
+};
+
+class DownloadResultCommand : public Command{
+public:
+    DownloadResultCommand(DefaultIO &dio1, ClientData *cd);
+    void execute() override;
+};
+
+class SettingCommand : public Command{
+public:
+    SettingCommand(DefaultIO &dio1, ClientData *cd);
+    void execute() override;
+
+    bool KIsValid(string k);
+    string strToUpper(string word);
+    bool CurrStrIsDistance(string str);
+};
+
+class UploadCommand : public Command {
+public:
+    UploadCommand(DefaultIO &dio1, ClientData *cd);
+    void execute() override;
+};
 
 #endif //EX4_COMMAND_H

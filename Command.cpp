@@ -5,6 +5,7 @@
 #include "Command.h"
 
 
-Command::Command() {
-    this->dio = *new StandardIO();
+Command::Command(DefaultIO &dio1) : dio(dio1) {
 }
+
+
