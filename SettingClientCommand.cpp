@@ -27,12 +27,14 @@ void SettingClientCommand::execute() {
 
         if (checkK == "invalid value for K") {
             //this->dio.write(checkK);
+
             cout<<checkK<<endl;
         }
         //string checkMetric = this->dio.read();
         if (checkMetric == "invalid value for metric") {
             //  this->dio.write(checkMetric);
             cout<< checkMetric << endl;
+
         }
 
     }

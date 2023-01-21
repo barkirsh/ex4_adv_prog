@@ -34,6 +34,7 @@ public:
     vector<double> createVectorFromVectorString(vector<string> vec_str);
 
     /**
+
      * check if a string ends with a string
      * @param fullString
      * @param ending
@@ -41,6 +42,7 @@ public:
      */
     bool hasEnding (string fullString, string ending);
     /**
+
  * funcName: checkInput
  * This function check if a string is a number (int or double)
  * and return a boolean answer.

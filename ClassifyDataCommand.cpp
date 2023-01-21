@@ -58,3 +58,4 @@ void ClassifyDataCommand:: execute(){
     this->cd->setResultsAlg(results);
     dio.write("classifying data complete");
 }
+

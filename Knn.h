@@ -23,7 +23,9 @@ public:
 * @param keyword - the name of distance type
 * @return Distance&, the type of distance for calculating.
 */
-    static Distance& calcWayOfDist(string keyword);
+
+static Distance& calcWayOfDist(string keyword);
+
 /**
  * funcName: inTypesList
  * this func is responsible for determine if a given string is in a given map<str,int> already.
@@ -43,7 +45,9 @@ public:
  * @return map with counted knn types
  * 
 */
-    map<string, int> countTypesAppear(map<vector<double>,string> m, int k);
+
+map<string, int> countTypesAppear(map<vector<double>,string> m, int k);
+
 
 
 /**
@@ -52,7 +56,9 @@ public:
  * @param countTypes - map: strings->keys, int->values
  * @return string of the string with highest int value 
 */
+
     string mostOccurType(map<string,int> countTypes) ;
+
 
 /**
 * funcName: dataSetWithDistance
@@ -64,5 +70,7 @@ public:
 * @param calcWay - the string of the way to calculate distance
 * @return map, new data base with first element in vector of distance from the input vector
 */
+
     map<vector<double>,string> dataSetForAlg(vector<double> inputVec,map<vector<double>,string> m,string calcWay,int k);
 };
+

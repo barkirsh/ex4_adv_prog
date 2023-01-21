@@ -5,7 +5,9 @@
 #include "CLI.h"
 
 CLI::CLI(DefaultIO &dio1) :dio(dio1){
+
     // this->dio = dio;
+
     cd = new ClientData();
     commands[1] = new UploadCommand(this->dio, cd);
     commands[2] = new SettingCommand(this->dio, cd);

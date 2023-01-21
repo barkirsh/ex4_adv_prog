@@ -6,6 +6,7 @@
 
 ClassifyDataClientCommand::ClassifyDataClientCommand(DefaultIO &dio): ClientCommand(dio) {
     // this->dio = dio;
+
 }
 
 void ClassifyDataClientCommand::execute() {
