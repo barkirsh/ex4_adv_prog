@@ -26,7 +26,7 @@ protected:
 
     string description;
     DefaultIO &dio;
-    public:
+public:
     ClientCommand();
     virtual void execute() = 0;
 };
@@ -62,4 +62,6 @@ public:
     void execute() override;
 };
 
+
 #endif //EX4_ADV_CLIENTClientCommand_H
+

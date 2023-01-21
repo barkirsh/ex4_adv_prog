@@ -5,7 +5,8 @@
 #include "ClientCommand.h"
 
 ClassifyDataClientCommand::ClassifyDataClientCommand(DefaultIO &dio): ClientCommand(dio) {
-   // this->dio = dio;
+    // this->dio = dio;
+
 }
 
 void ClassifyDataClientCommand::execute() {

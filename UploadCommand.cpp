@@ -1,3 +1,4 @@
+
 //
 // Created by nodo0 on 12/01/2023.
 //
@@ -54,4 +55,3 @@ void UploadCommand::execute(){
     this->cd->setContentTest(testVec);
     dio.write("Upload complete.");
 }
-

@@ -87,6 +87,15 @@ vector<double> DataSetsHandler::createVectorFromVectorString(vector <string> vec
     return v;
 }
 
+
+bool DataSetsHandler::hasEnding (string fullString, string ending) {
+    if (fullString.length() >= ending.length()) {
+        return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
+    } else {
+        return false;
+    }
+}
+
 bool DataSetsHandler::checkInput(string word) {
     // too long number will be overflow
     if (word.length() >= 300) {
@@ -95,50 +104,71 @@ bool DataSetsHandler::checkInput(string word) {
 
     bool isPoint = false;
 
-    // the word must start with a digit or - to be a number
-    if (!isdigit(word[0])) { // if starts without a number
 
-        if (word[0] == '.') {
+    string newWord;
+
+    // last word in every line contains \r
+    if (hasEnding(word,"\r")) {
+        for (int i = 0; i < word.length() - 1; i++) {
+            newWord+= word[i];
+        }
+    } else {
+        newWord = word;
+    }
+
+    // the word must start with a digit or - to be a number
+    if (!isdigit(newWord[0])) { // if starts without a number
+
+        if (newWord[0] == '.') {
             isPoint = true;
-        } else if (word[0] != '-' && word[0] != '+') {
+        } else if (newWord[0] != '-' && newWord[0] != '+') {
             return false;
-        } else if (!isdigit(word[1])) { // if - and then another sign that is not a number
+        } else if (!isdigit(newWord[1])) { // if - and then another sign that is not a number
+
             return false;
         }
     }
 
-    for (int j = 1; j < word.length(); j++) {
-        if (word[j] == '-' || word[j] == '+') { // having +/- at curr char
-            if (j == word.length() - 1) { // last char is a sigh
+
+    for (int j = 1; j < newWord.length(); j++) {
+        if (newWord[j] == '-' || newWord[j] == '+') { // having +/- at curr char
+            if (j == newWord.length() - 1) { // last char is a sigh
                 return false;
-            } else if ((word[j - 1] == 'e' || word[j - 1] == 'E') && (isdigit(word[j + 1]))) { // +/- between e to digit
+            } else if ((newWord[j - 1] == 'e' || newWord[j - 1] == 'E') && (isdigit(newWord[j + 1]))) { // +/- between e to digit
+
                 continue;
             }
             return false;
 
         }
-        if (word[j] == 'e' || word[j] == 'E') { // curr char is e
-            if (j == word.length() - 1) { // last char
+
+        if (newWord[j] == 'e' || newWord[j] == 'E') { // curr char is e
+            if (j == newWord.length() - 1) { // last char
                 return false;
-            } else if (word[j + 1] == '-' || word[j + 1] == '+') { // after e there is +/- sign
-                if (j == word.length() - 2) { // the sign is last char
+            } else if (newWord[j + 1] == '-' || newWord[j + 1] == '+') { // after e there is +/- sign
+                if (j == newWord.length() - 2) { // the sign is last char
+
                     return false;
                 }
                 isPoint = true;
                 continue;
             }
         }
-        if (word[j] == '.') { // checking if its double
+
+        if (newWord[j] == '.') { // checking if its double
+
             if (isPoint) {
                 return false;
             }
             isPoint = true;
-            if (j == word.length() - 1 || (word[j + 1] == 'e' || word[j + 1] == 'E')) {
+
+            if (j == newWord.length() - 1 || (newWord[j + 1] == 'e' || newWord[j + 1] == 'E')) {
                 return true;
-            } else if (!isdigit(word[j + 1])) { // after point there is not a number
+            } else if (!isdigit(newWord[j + 1])) { // after point there is not a number
                 return false;
             }
-        } else if (!isdigit(word[j])) { // any other char beside numbers/ .
+        } else if (!isdigit(newWord[j])) { // any other char beside numbers/ .
+
             return false;
         }
     }

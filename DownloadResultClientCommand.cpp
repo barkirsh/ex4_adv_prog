@@ -5,7 +5,7 @@
 #include "ClientCommand.h"
 
 DownloadResultClientCommand::DownloadResultClientCommand(DefaultIO &dio) : ClientCommand(dio) {
-    //this->dio
+
 }
 
 void DownloadResultClientCommand::execute() {

@@ -24,5 +24,5 @@ public:
     int getSocket();
 };
 
-
 #endif //EX4_ADV_CLIENT_H
+

@@ -17,3 +17,4 @@ add_executable(client Client.cpp Client.h
         ClientCommand.cpp ClientCommand.h
         ClassifyDataClientCommand.cpp DisplayResultClientCommand.cpp UploadClientCommand.cpp
         SettingClientCommand.cpp DownloadResultClientCommand.cpp)
+
