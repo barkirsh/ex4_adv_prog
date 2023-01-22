@@ -61,7 +61,7 @@ bool SettingCommand::KIsValid(string check) {
     int k;
     try {
         k = stoi(check);
-    } catch (const invalid_argument &ia) {
+    } catch (...) {
         return false;
     }
     if (k <= 0) {

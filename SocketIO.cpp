@@ -11,11 +11,9 @@ void SocketIO::write(const std::string &message) {
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
     int sent_bytes;
-
     memset(buffer, 0, expected_data_len);
     strncpy(buffer, message.c_str(), sizeof(buffer));
     //buffer = message.c_str();
-
     // sending the messege
     sent_bytes = send(this->client_socket, buffer, expected_data_len, 0);
 

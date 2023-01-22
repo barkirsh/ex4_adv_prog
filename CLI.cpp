@@ -11,8 +11,6 @@ CLI::CLI(DefaultIO &dio1) : dio(dio1) {
     commands[3] = new ClassifyDataCommand(this->dio, cd);
     commands[4] = new DisplayResultCommand(this->dio, cd);
     commands[5] = new DownloadResultCommand(this->dio, cd);
-
-
 }
 
 void CLI::menu() {
@@ -29,7 +27,6 @@ void CLI::start() {
     while (input != "8") {
         this->commands[stoi(input)]->execute();
         menu();
-        //input = "";
         input = this->dio.read();
     }
     deleteAll();

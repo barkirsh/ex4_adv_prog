@@ -13,6 +13,7 @@ void DisplayResultClientCommand::execute() {
 
     if (str == "please upload data" || str == "please classify the data.") {
         cout << str << endl;
+        this->dio.write("ok");
         return;
     }
 
@@ -21,6 +22,6 @@ void DisplayResultClientCommand::execute() {
         str = this->dio.read();
         this->dio.write("ok");
     }
-    this->dio.write("ok");
+
     cout << str << endl;
 }

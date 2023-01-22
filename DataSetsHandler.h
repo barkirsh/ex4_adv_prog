@@ -5,7 +5,6 @@
 #include <math.h>
 #include <iostream>
 #include <vector>
-#include "ValidationClient.h"
 
 using namespace std;
 

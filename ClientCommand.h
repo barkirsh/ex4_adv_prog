@@ -11,6 +11,7 @@
 #include <string.h>
 #include <cstring>
 #include <sstream>
+#include <pthread.h>
 
 #include "DefaultIO.h"
 #include "StandardIO.h"
@@ -26,8 +27,10 @@ protected:
      */
     ClientCommand(DefaultIO &dio1);
 
-    string description; // description of command
-    DefaultIO &dio;     // io for command
+
+    string description;
+    DefaultIO &dio;
+
 public:
 /**
  * responsible for executing this command
@@ -69,7 +72,11 @@ class DownloadResultClientCommand : public ClientCommand {
 public:
     explicit DownloadResultClientCommand(DefaultIO &dio);
 
+
+
     void execute() override;
+
+
 };
 
 #endif //EX4_ADV_CLIENTClientCommand_H

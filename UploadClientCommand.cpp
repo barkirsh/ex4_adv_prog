@@ -40,12 +40,14 @@ void UploadClientCommand::execute() {
     if (!file1.is_open()) {
         cout << "invalid input" << endl;
         dio.write("error");
+        dio.read();
         return;
     }
     // the file is empty - exit
     if (file1.eof()) {
         cout << "invalid input" << endl;
         dio.write("error");
+        dio.read();
         return;
     }
 
@@ -67,12 +69,14 @@ void UploadClientCommand::execute() {
     if (!file2.is_open()) {
         cout << "invalid input" << endl;
         dio.write("error");
+        dio.read();
         return;
     }
     // the file is empty - exit
     if (file2.eof()) {
         cout << "invalid input" << endl;
         dio.write("error");
+        dio.read();
         return;
     }
 

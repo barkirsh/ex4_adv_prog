@@ -82,7 +82,7 @@ bool isValidPort(const string &str) {
             return false;
         }
     }
-    catch (const invalid_argument &ia) {
+    catch (...) {
         return false;
     }
     return true;
