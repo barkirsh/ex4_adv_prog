@@ -12,6 +12,9 @@
 #include <cstring>
 #include <sstream>
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 
 using namespace std;
 
