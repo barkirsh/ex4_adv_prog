@@ -1,4 +1,3 @@
-
 //
 // Created by nodo0 on 12/01/2023.
 //
@@ -11,7 +10,7 @@ UploadCommand::UploadCommand(DefaultIO &dio1, ClientData *cd) : Command(dio1) {
     this->cd = cd;
 }
 
-void UploadCommand::execute(){
+void UploadCommand::execute() {
     vector<string> trainVec = *new vector<string>;
     vector<string> testVec = *new vector<string>;
 

@@ -4,8 +4,7 @@
 
 #include "ClientCommand.h"
 
-SettingClientCommand::SettingClientCommand(DefaultIO &dio):ClientCommand(dio) {
-    //this->dio = dio;
+SettingClientCommand::SettingClientCommand(DefaultIO &dio) : ClientCommand(dio) {
 }
 
 void SettingClientCommand::execute() {
@@ -15,7 +14,7 @@ void SettingClientCommand::execute() {
 
     // recieving from user updated K & Distance Type
     string str;
-    getline(cin,str);
+    getline(cin, str);
 
     this->dio.write(str); // send to server the new settings or ENTER
 
@@ -27,14 +26,12 @@ void SettingClientCommand::execute() {
 
         if (checkK == "invalid value for K") {
             //this->dio.write(checkK);
-
-            cout<<checkK<<endl;
+            cout << checkK << endl;
         }
         //string checkMetric = this->dio.read();
         if (checkMetric == "invalid value for metric") {
             //  this->dio.write(checkMetric);
-            cout<< checkMetric << endl;
-
+            cout << checkMetric << endl;
         }
 
     }

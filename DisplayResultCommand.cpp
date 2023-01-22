@@ -7,8 +7,8 @@ DisplayResultCommand::DisplayResultCommand(DefaultIO &dio1, ClientData *cd) : Co
 }
 
 // displaying for each raw of test file it classification
-void  DisplayResultCommand:: execute() {
-    if (this->cd->getContentTest().empty() ||this->cd->getContentTrain().empty()) {
+void DisplayResultCommand::execute() {
+    if (this->cd->getContentTest().empty() || this->cd->getContentTrain().empty()) {
         dio.write("please upload data");
         return;
     }
@@ -17,7 +17,7 @@ void  DisplayResultCommand:: execute() {
         return;
     }
 
-    for (string s:this->cd->getResultsAlg()) {
+    for (string s: this->cd->getResultsAlg()) {
         dio.write(s);
         dio.read();
     }

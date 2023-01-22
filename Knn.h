@@ -9,6 +9,7 @@
 
 #include "Distance.h"
 #include "DataSetsHandler.h"
+
 using namespace std;
 
 class Knn {
@@ -23,8 +24,7 @@ public:
 * @param keyword - the name of distance type
 * @return Distance&, the type of distance for calculating.
 */
-
-static Distance& calcWayOfDist(string keyword);
+    static Distance &calcWayOfDist(string keyword);
 
 /**
  * funcName: inTypesList
@@ -45,9 +45,7 @@ static Distance& calcWayOfDist(string keyword);
  * @return map with counted knn types
  * 
 */
-
-map<string, int> countTypesAppear(map<vector<double>,string> m, int k);
-
+    map<string, int> countTypesAppear(map<vector<double>, string> m, int k);
 
 
 /**
@@ -56,9 +54,7 @@ map<string, int> countTypesAppear(map<vector<double>,string> m, int k);
  * @param countTypes - map: strings->keys, int->values
  * @return string of the string with highest int value 
 */
-
-    string mostOccurType(map<string,int> countTypes) ;
-
+    string mostOccurType(map<string, int> countTypes);
 
 /**
 * funcName: dataSetWithDistance
@@ -70,7 +66,6 @@ map<string, int> countTypesAppear(map<vector<double>,string> m, int k);
 * @param calcWay - the string of the way to calculate distance
 * @return map, new data base with first element in vector of distance from the input vector
 */
-
-    map<vector<double>,string> dataSetForAlg(vector<double> inputVec,map<vector<double>,string> m,string calcWay,int k);
+    map<vector<double>, string>
+    dataSetForAlg(vector<double> inputVec, map<vector<double>, string> m, string calcWay, int k);
 };
-

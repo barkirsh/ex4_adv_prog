@@ -18,11 +18,14 @@ class Client {
 
 public:
     const int port; // port number
-    ClientCommand* commands[6]{};
+    ClientCommand *commands[6]{};
+
     Client(int socket, DefaultIO &dio);
-    void setSocket (int socket);
+
+    void setSocket(int socket);
+
     int getSocket();
 };
 
-#endif //EX4_ADV_CLIENT_H
 
+#endif //EX4_ADV_CLIENT_H

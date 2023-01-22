@@ -9,13 +9,10 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 #include <cstring>
 #include <sstream>
 #include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 
 using namespace std;
 

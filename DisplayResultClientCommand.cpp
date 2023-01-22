@@ -4,9 +4,8 @@
 
 #include "ClientCommand.h"
 
-DisplayResultClientCommand::DisplayResultClientCommand(DefaultIO &dio): ClientCommand(dio) {
+DisplayResultClientCommand::DisplayResultClientCommand(DefaultIO &dio) : ClientCommand(dio) {
     // this->dio = dio;
-
 }
 
 void DisplayResultClientCommand::execute() {
