@@ -1,6 +1,5 @@
-//
-// Created by oem on 1/12/23.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #include <netinet/in.h>
 #include "ServerClass.h"
@@ -22,18 +21,30 @@ ServerClass::ServerClass(int server_port) : port(server_port), sock(socket(AF_IN
     }
 }
 
-void ServerClass::handleClient(int client_socket) {
-    SocketIO sio{client_socket};// = new SocketIO(client_socket); //
+void *handle_client(void *client_socket) {
+    int sock = *(int *) client_socket;
+    SocketIO sio{sock};// = new SocketIO(client_socket); //
+    // cout << "we accepted new client to program, client sock is: " << to_string(client_sock) << endl;
+    CLI cli(sio);
+    cli.start();
+    // cout << " client disconnect, client sock is: " << to_string(client_sock) << endl;
+    return nullptr;
+}
+
+/*
+void *ServerClass::handleClient(int client_socket) {
+    int client_sock = (int) client_socket;
+    SocketIO sio{client_sock};// = new SocketIO(client_socket); //
     cout << "we accepted new client to program, client sock is: " << to_string(client_socket) << endl;
     CLI cli(sio);
     cli.start();
-    cout << " client disconnect, client sock is: " << to_string(client_socket) << endl;
+    cout << " client disconnect, client sock is: " << to_string(client_sock) << endl;
 
-}
+}*/
 
 void ServerClass::start() {
     int client_socket;
-
+    int client_no = 5;
     if (listen(this->sock, 5) < 0) {
         perror("ERROR : listen socket");
         exit(1);
@@ -42,14 +53,25 @@ void ServerClass::start() {
 
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
+    //pthread_t clients;
+    pthread_t clients;
+
     while (true) {
         client_socket = accept(this->sock, (struct sockaddr *) &client_sin, &addr_len);
         if (client_socket < 0) {
             perror("ERROR : accept client");
         } else { // here we accept a new client
-            handleClient(client_socket);
+
+            // thread newThread(ServerClass::handleClient, this,client_socket);
+            // this->threads.push_back(std::move(newThread));
+            // handleClient(client_socket);
+            int curr_client;
+
+            curr_client = pthread_create(&clients, NULL, handle_client, (void *) &client_socket);
+            //   client_no--;
         }
     }
+
 }
 
 bool isValidPort(const string &str) {
@@ -60,7 +82,7 @@ bool isValidPort(const string &str) {
             return false;
         }
     }
-    catch (const invalid_argument &ia) {
+    catch (...) {
         return false;
     }
     return true;

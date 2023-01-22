@@ -10,10 +10,12 @@ DisplayResultCommand::DisplayResultCommand(DefaultIO &dio1, ClientData *cd) : Co
 void DisplayResultCommand::execute() {
     if (this->cd->getContentTest().empty() || this->cd->getContentTrain().empty()) {
         dio.write("please upload data");
+        dio.read();
         return;
     }
     if (this->cd->getResultsAlg().empty()) {
         dio.write("please classify the data.");
+        dio.read();
         return;
     }
 

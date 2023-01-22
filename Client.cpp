@@ -12,6 +12,7 @@ Client::Client(int socket, DefaultIO &dio1) : port(0), dio(dio1) {
     this->commands[2] = new SettingClientCommand(this->dio);
     this->commands[3] = new ClassifyDataClientCommand(this->dio);
     this->commands[4] = new DisplayResultClientCommand(this->dio);
+    this->commands[5] = new DownloadResultClientCommand(this->dio);
 }
 
 void Client::setSocket(int socket) {
@@ -56,7 +57,7 @@ bool isValidPort(const string &str) {
             return false;
         }
     }
-    catch (const invalid_argument &ia) {
+    catch (...) {
         return false;
     }
     return true;
@@ -127,10 +128,10 @@ int main(int argc, char *argv[]) {
 
         try {
             option = stoi(str);
-            if (option < 1 || option > 5) {
-                throw invalid_argument("Wrong Input");
+            if ((option < 1 || option > 5) && (option != 8)) {
+                throw ("Wrong Input");
             }
-        } catch (const invalid_argument &ia) {
+        } catch (...) {
             cout << "invalid input" << endl;
             isLegal = false;
         }
@@ -138,8 +139,10 @@ int main(int argc, char *argv[]) {
             // send option to server
             dio.write(str);
 
-            // go to command
+            if (option != 8){
+                // go to command
             c.commands[option]->execute();
+            }
         }
     } while (str != "8");
 
@@ -148,9 +151,10 @@ int main(int argc, char *argv[]) {
 
     // delete All
     for (int i = 5; i > 0; i--) {
-        delete c.commands[i];
+        c.commands[i] = NULL;
     }
-    delete &c;
+
+    close(c.getSocket());
 
     // remove connection
 }

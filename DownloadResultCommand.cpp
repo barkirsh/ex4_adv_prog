@@ -13,14 +13,19 @@ DownloadResultCommand::DownloadResultCommand(DefaultIO &dio1, ClientData *cd) : 
 void DownloadResultCommand::execute() {
     if (this->cd->getContentTest().empty() || this->cd->getContentTrain().empty()) {
         dio.write("please upload data");
+        dio.read();
         return;
     }
     if (this->cd->getResultsAlg().empty()) {
         dio.write("please classify the data.");
+        dio.read();
         return;
     }
 
     for (string s: this->cd->getResultsAlg()) {
         dio.write(s);
+        dio.read();
     }
+    dio.write("Done.");
+    dio.read();
 }

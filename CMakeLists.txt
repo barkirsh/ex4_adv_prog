@@ -17,4 +17,11 @@ add_executable(client Client.cpp Client.h
         ClientCommand.cpp ClientCommand.h
         ClassifyDataClientCommand.cpp DisplayResultClientCommand.cpp UploadClientCommand.cpp
         SettingClientCommand.cpp DownloadResultClientCommand.cpp)
-
+add_executable(c_1 Client.cpp Client.h
+        DefaultIO.h DefaultIO.cpp SocketIO.cpp SocketIO.h
+        ClientCommand.cpp ClientCommand.h
+        ClassifyDataClientCommand.cpp DisplayResultClientCommand.cpp UploadClientCommand.cpp
+        SettingClientCommand.cpp DownloadResultClientCommand.cpp)
+find_package(Threads REQUIRED)
+include_directories( ${CMAKE_THREAD_LIBS_INIT} )
+target_link_libraries(server ${CMAKE_THREAD_LIBS_INIT})
