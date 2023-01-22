@@ -20,48 +20,52 @@
 
 using namespace std;
 
-class ClientCommand{
+class ClientCommand {
 protected:
     ClientCommand(DefaultIO &dio1);
 
     string description;
     DefaultIO &dio;
 public:
-    ClientCommand();
+
     virtual void execute() = 0;
 };
 
 class UploadClientCommand : public ClientCommand {
 public:
     explicit UploadClientCommand(DefaultIO &dio);
+
     void execute() override;
+
     void fileHandler(ifstream &file);
 };
 
-class SettingClientCommand : public ClientCommand{
+class SettingClientCommand : public ClientCommand {
 public:
     explicit SettingClientCommand(DefaultIO &dio);
+
     void execute() override;
 };
 
-class ClassifyDataClientCommand : public ClientCommand{
+class ClassifyDataClientCommand : public ClientCommand {
 public:
     explicit ClassifyDataClientCommand(DefaultIO &dio);
+
     void execute() override;
 };
 
-class DisplayResultClientCommand : public ClientCommand{
+class DisplayResultClientCommand : public ClientCommand {
 public:
     explicit DisplayResultClientCommand(DefaultIO &dio);
+
     void execute() override;
 };
 
-class DownloadResultClientCommand : public ClientCommand{
+class DownloadResultClientCommand : public ClientCommand {
 public:
     explicit DownloadResultClientCommand(DefaultIO &dio);
+
     void execute() override;
 };
 
-
 #endif //EX4_ADV_CLIENTClientCommand_H
-

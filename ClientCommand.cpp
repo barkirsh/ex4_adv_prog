@@ -4,7 +4,7 @@
 
 #include "ClientCommand.h"
 
-ClientCommand::ClientCommand(DefaultIO &dio1):dio(dio1) {
+ClientCommand::ClientCommand(DefaultIO &dio1) : dio(dio1) {
 
 }
 

@@ -11,7 +11,7 @@ DownloadResultCommand::DownloadResultCommand(DefaultIO &dio1, ClientData *cd) : 
 }
 
 void DownloadResultCommand::execute() {
-    if (this->cd->getContentTest().empty() ||this->cd->getContentTrain().empty()) {
+    if (this->cd->getContentTest().empty() || this->cd->getContentTrain().empty()) {
         dio.write("please upload data");
         return;
     }
@@ -20,7 +20,7 @@ void DownloadResultCommand::execute() {
         return;
     }
 
-    for (string s:this->cd->getResultsAlg()) {
+    for (string s: this->cd->getResultsAlg()) {
         dio.write(s);
     }
 }

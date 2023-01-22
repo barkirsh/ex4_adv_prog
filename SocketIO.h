@@ -20,7 +20,7 @@ public:
      * reading message from port
      * @return
      */
-    string read() override ;
+    string read() override;
 
     /**
      * write messege to socket
@@ -32,4 +32,3 @@ public:
 
 
 #endif //EX4_ADV_SOCKETIO_H
-

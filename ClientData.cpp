@@ -6,11 +6,9 @@
 
 using namespace std;
 
-ClientData::ClientData(){
+ClientData::ClientData() {
     this->k = 5;
     this->distance = "AUC";
-    this->train_content = *new vector<string>;
-    this->test_content = *new vector<string>;
 }
 
 // getter for private member k
@@ -32,10 +30,12 @@ void ClientData::setK(int new_k) {
 void ClientData::setDistance(string new_distance) {
     distance = new_distance;
 }
+
 // getter for private member path_train
 vector<string> ClientData::getContentTrain() {
     return train_content;
 }
+
 // setter for private member path_train
 void ClientData::setContentTrain(vector<string> new_content_train) {
     train_content = new_content_train;
@@ -45,6 +45,7 @@ void ClientData::setContentTrain(vector<string> new_content_train) {
 vector<string> ClientData::getContentTest() {
     return test_content;
 }
+
 // setter for private member path_test
 void ClientData::setContentTest(vector<string> new_content_test) {
     test_content = new_content_test;
@@ -54,6 +55,7 @@ void ClientData::setContentTest(vector<string> new_content_test) {
 vector<string> ClientData::getResultsAlg() {
     return resultsAlg;
 }
+
 // setter for private member resultsAlg
 void ClientData::setResultsAlg(vector<string> new_resultsAlg) {
     resultsAlg = new_resultsAlg;

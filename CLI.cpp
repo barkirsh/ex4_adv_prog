@@ -4,10 +4,8 @@
 
 #include "CLI.h"
 
-CLI::CLI(DefaultIO &dio1) :dio(dio1){
-
+CLI::CLI(DefaultIO &dio1) : dio(dio1) {
     // this->dio = dio;
-
     cd = new ClientData();
     commands[1] = new UploadCommand(this->dio, cd);
     commands[2] = new SettingCommand(this->dio, cd);
@@ -29,22 +27,8 @@ void CLI::start() {
     //string input;
     menu(); // write menu first time
     string input = this->dio.read();
-    int option;
-    bool isLegal = true;
     while (input != "8") {
-        try {
-            option = stoi(input);
-            if (option < 1 || option > 5) {
-                throw invalid_argument("Wrong Input");
-            }
-        } catch (const invalid_argument &ia) {
-            this->dio.write("invalid input");
-            isLegal = false;
-        }
-        if (isLegal) {
-            this->commands[option]->execute();
-        }
-
+        this->commands[stoi(input)]->execute();
         menu();
         //input = "";
         input = this->dio.read();

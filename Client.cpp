@@ -4,8 +4,8 @@
 
 #include <fstream>
 #include "Client.h"
-Client::Client(int socket,DefaultIO &dio1) : port(0), dio(dio1) {
-//    this->dio = dio;
+
+Client::Client(int socket, DefaultIO &dio1) : port(0), dio(dio1) {
     this->socket = socket;
 
     this->commands[1] = new UploadClientCommand(this->dio);
@@ -22,7 +22,7 @@ int Client::getSocket() {
     return this->socket;
 }
 
-bool isValidIP(const string& str) {
+bool isValidIP(const string &str) {
     // Split the string by the '.' delimiter
     stringstream ss(str);
     string token;
@@ -48,7 +48,7 @@ bool isValidIP(const string& str) {
     return count == 4;
 }
 
-bool isValidPort(const string& str) {
+bool isValidPort(const string &str) {
     int portNum;
     try {
         portNum = stoi(str);
@@ -62,7 +62,7 @@ bool isValidPort(const string& str) {
     return true;
 }
 
-bool checkArgs (int argc, char *argv[]) {
+bool checkArgs(int argc, char *argv[]) {
     // check that we got the right number of arguments.
     if (argc != 3) {
         perror("Wrong Input");
@@ -79,8 +79,8 @@ bool checkArgs (int argc, char *argv[]) {
     return false;
 }
 
-int main(int argc, char *argv[]){
-    if (!checkArgs(argc,argv)) {
+int main(int argc, char *argv[]) {
+    if (!checkArgs(argc, argv)) {
         exit(1);
     }
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -91,11 +91,10 @@ int main(int argc, char *argv[]){
     }
 
     SocketIO dio(sock);// = new SocketIO(sock);
-    Client c = *new Client(sock,dio);
+    Client c = *new Client(sock, dio);
 
     const char *ip_address = argv[1];
     int port_no = stoi(argv[2]);
-
 
 
     c.setSocket(sock);
@@ -114,17 +113,44 @@ int main(int argc, char *argv[]){
         exit(1);
     }
 
+    string str;
+    int option;
+    bool isLegal = true;
+    do {
+        string menu = dio.read();
 
-    while (true) {
-        string fromServer = dio.read();
+        // print the menu
+        cout << menu << endl;
 
-        // print the message
-        cout << fromServer << endl;
+        // get option
+        getline(cin, str);
 
-        string str;
-        getline(cin,str);
+        try {
+            option = stoi(str);
+            if (option < 1 || option > 5) {
+                throw invalid_argument("Wrong Input");
+            }
+        } catch (const invalid_argument &ia) {
+            cout << "invalid input" << endl;
+            isLegal = false;
+        }
+        if (isLegal) {
+            // send option to server
+            dio.write(str);
 
-        dio.write(str);
-        c.commands[stoi(str)]->execute();
+            // go to command
+            c.commands[option]->execute();
+        }
+    } while (str != "8");
+
+    // send option to server
+    dio.write(str);
+
+    // delete All
+    for (int i = 5; i > 0; i--) {
+        delete c.commands[i];
     }
+    delete &c;
+
+    // remove connection
 }

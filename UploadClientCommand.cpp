@@ -32,7 +32,7 @@ void UploadClientCommand::execute() {
     cout << msg << endl;
 
     string str;
-    getline(cin,str);
+    getline(cin, str);
 
     // get the train file path from the user.
     ifstream file1(str);
@@ -59,7 +59,7 @@ void UploadClientCommand::execute() {
     // print the message
     cout << msg << endl;
 
-    getline(cin,str);
+    getline(cin, str);
 
     // get the train file path from the user.
     ifstream file2(str);

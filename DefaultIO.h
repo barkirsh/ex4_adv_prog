@@ -14,8 +14,6 @@
 #include <cstring>
 #include <sstream>
 #include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 
 using namespace std;
 
@@ -23,11 +21,10 @@ class DefaultIO {
 public:
     //DefaultIO();
 
-    virtual string read() =0 ;
-    virtual void write(const std::string &message)= 0;
+    virtual string read() = 0;
+
+    virtual void write(const std::string &message) = 0;
 };
 
 
-
 #endif //EX4_DEFAULTIO_H
-

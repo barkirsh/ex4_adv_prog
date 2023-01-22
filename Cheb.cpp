@@ -2,7 +2,6 @@
 
 #include "Distance.h"
 
-
 double Cheb::calculateDistance(vector<double> v, vector<double> u) {
 //max(.... (|vi-ui|)... ) 
     double max = 0;

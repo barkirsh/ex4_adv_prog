@@ -80,7 +80,7 @@ string SettingCommand::strToUpper(string word) {
 
 
 bool SettingCommand::CurrStrIsDistance(string str) {
-    if(str.empty()){
+    if (str.empty()) {
         return false;
     }
     str = strToUpper(str);
