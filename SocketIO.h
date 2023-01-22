@@ -1,6 +1,5 @@
-//
-// Created by barki on 1/13/2023.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #ifndef EX4_ADV_SOCKETIO_H
 #define EX4_ADV_SOCKETIO_H

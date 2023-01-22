@@ -1,6 +1,5 @@
-//
-// Created by nodo0 on 12/01/2023.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #include "StandardIO.h"
 

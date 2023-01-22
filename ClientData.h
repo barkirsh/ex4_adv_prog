@@ -1,6 +1,5 @@
-//
-// Created by barki on 1/12/2023.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #ifndef EX5_ADV_PROG_CLIENTDATA_H
 #define EX5_ADV_PROG_CLIENTDATA_H

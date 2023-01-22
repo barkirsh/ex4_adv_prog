@@ -1,6 +1,5 @@
-//
-// Created by barki on 1/12/2023.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #include "ClientData.h"
 

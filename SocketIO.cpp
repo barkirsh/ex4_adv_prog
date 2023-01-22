@@ -1,6 +1,5 @@
-//
-// Created by barki on 1/13/2023.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #include "SocketIO.h"
 

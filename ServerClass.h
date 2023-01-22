@@ -25,6 +25,3 @@ public:
     void * handleClient(void* client_socket);
 */
 };
-
-
-#endif //EX4_ADV_SERVERCLASS_H
