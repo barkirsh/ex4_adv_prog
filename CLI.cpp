@@ -25,9 +25,14 @@ void CLI::start() {
     menu(); // write menu first time
     string input = this->dio.read();
     while (input != "8") {
-        this->commands[stoi(input)]->execute();
-        menu();
-        input = this->dio.read();
+        try {
+            this->commands[stoi(input)]->execute();
+            menu();
+            input = this->dio.read();
+        } catch (...) {
+            perror("invalid input");
+            exit(1);
+        }
     }
     deleteAll();
     // close connection

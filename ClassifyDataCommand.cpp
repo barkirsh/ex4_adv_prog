@@ -11,6 +11,7 @@ ClassifyDataCommand::ClassifyDataCommand(DefaultIO &dio1, ClientData *cd) : Comm
 }
 
 void ClassifyDataCommand::execute() {
+    // train || test files werent uploaded
     if (this->cd->getContentTrain().empty() || this->cd->getContentTest().empty()) {
         // if files weren't uploaded
         dio.write("please upload data");
@@ -55,7 +56,7 @@ void ClassifyDataCommand::execute() {
             return;
         }
     }
-
+    // updating our results vector
     this->cd->setResultsAlg(results);
     dio.write("classifying data complete");
 }

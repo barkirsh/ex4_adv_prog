@@ -40,6 +40,11 @@ public:
 
 class UploadClientCommand : public ClientCommand {
 public:
+
+    /**
+     * constructor uploading
+     * @param dio   io
+     */
     explicit UploadClientCommand(DefaultIO &dio);
 
     void execute() override;
@@ -49,6 +54,11 @@ public:
 
 class SettingClientCommand : public ClientCommand {
 public:
+
+    /**
+     * constructor settings
+     * @param dio   io
+     */
     explicit SettingClientCommand(DefaultIO &dio);
 
     void execute() override;
@@ -56,6 +66,11 @@ public:
 
 class ClassifyDataClientCommand : public ClientCommand {
 public:
+
+    /**
+     * constructor classify
+     * @param dio   io
+     */
     explicit ClassifyDataClientCommand(DefaultIO &dio);
 
     void execute() override;
@@ -63,6 +78,11 @@ public:
 
 class DisplayResultClientCommand : public ClientCommand {
 public:
+
+    /**
+     * constructor display
+     * @param dio   io
+     */
     explicit DisplayResultClientCommand(DefaultIO &dio);
 
     void execute() override;
@@ -70,6 +90,11 @@ public:
 
 class DownloadResultClientCommand : public ClientCommand {
 public:
+
+    /**
+     * constructor downloading
+     * @param dio   io
+     */
     explicit DownloadResultClientCommand(DefaultIO &dio);
 
 

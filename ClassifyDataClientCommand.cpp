@@ -7,6 +7,7 @@ ClassifyDataClientCommand::ClassifyDataClientCommand(DefaultIO &dio) : ClientCom
 }
 
 void ClassifyDataClientCommand::execute() {
+    // client print the messge about classifying from server
     string msg = this->dio.read();
 
     cout << msg << endl;

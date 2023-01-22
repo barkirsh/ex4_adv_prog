@@ -8,9 +8,9 @@ DisplayResultClientCommand::DisplayResultClientCommand(DefaultIO &dio) : ClientC
 }
 
 void DisplayResultClientCommand::execute() {
-    string str = this->dio.read();
-    this->dio.write("ok");
-
+    string str = this->dio.read(); //  get condition from
+    this->dio.write("ok"); // recieved from server
+// if there is a problem
     if (str == "please upload data" || str == "please classify the data.") {
         cout << str << endl;
         this->dio.write("ok");
