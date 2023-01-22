@@ -1,6 +1,5 @@
-//
-// Created by nodo0 on 12/01/2023.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #ifndef EX4_STANDARDIO_H
 #define EX4_STANDARDIO_H

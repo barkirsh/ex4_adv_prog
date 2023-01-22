@@ -1,6 +1,4 @@
-//
-// Created by oem on 1/19/23.
-//
+// Bar Kirshenboim & Noa Dolev
 
 #ifndef EX4_ADV_CLIENTClientCommand_H
 #define EX4_ADV_CLIENTClientCommand_H
@@ -22,12 +20,18 @@ using namespace std;
 
 class ClientCommand {
 protected:
+    /**
+     * constructor of client command
+     * @param dio1  - IO
+     */
     ClientCommand(DefaultIO &dio1);
 
-    string description;
-    DefaultIO &dio;
+    string description; // description of command
+    DefaultIO &dio;     // io for command
 public:
-
+/**
+ * responsible for executing this command
+ */
     virtual void execute() = 0;
 };
 

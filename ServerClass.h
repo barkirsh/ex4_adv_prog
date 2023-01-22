@@ -1,6 +1,5 @@
-//
-// Created by oem on 1/12/23.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #ifndef EX4_ADV_SERVERCLASS_H
 #define EX4_ADV_SERVERCLASS_H

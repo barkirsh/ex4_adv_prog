@@ -1,3 +1,5 @@
+// Bar Kirshenboim & Noa Dolev
+
 # include "Command.h"
 
 DisplayResultCommand::DisplayResultCommand(DefaultIO &dio1, ClientData *cd) : Command(dio1) {

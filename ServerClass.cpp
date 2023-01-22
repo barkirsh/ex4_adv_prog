@@ -1,6 +1,5 @@
-//
-// Created by oem on 1/12/23.
-//
+// Bar Kirshenboim & Noa Dolev
+
 
 #include <netinet/in.h>
 #include "ServerClass.h"
