@@ -53,14 +53,37 @@ public:
 
 class SettingCommand : public Command {
 public:
+    /**
+     * constructor
+     * @param dio1 IO
+     * @param cd Client Data
+     */
     SettingCommand(DefaultIO &dio1, ClientData *cd);
 
+/**
+ * executing command
+ */
     void execute() override;
 
+/**
+ * check if k is int >= 0
+ * @param k val
+ * @return true if int>=0, false otherwise
+ */
     bool KIsValid(string k);
 
+/**
+ * uppercasing word's letters
+ * @param word the word
+ * @return uppercased word
+ */
     string strToUpper(string word);
 
+/**
+ * check if str is word with letters for a metric type
+ * @param str  string
+ * @return true if is, else - false
+ */
     bool CurrStrIsDistance(string str);
 };
 

@@ -15,18 +15,18 @@ bool hasEnding(string fullString, string ending) {
 
 void DownloadFile(vector<string> vec) {
     string path;
-    if (!hasEnding(vec[vec.size()-1],".csv")) {
-        path = vec[vec.size()-1] + "/results.csv";
+    if (!hasEnding(vec[vec.size() - 1], ".csv")) { // handle only csv files
+        path = vec[vec.size() - 1] + "/results.csv";
     } else {
-        path = vec[vec.size()-1];
+        path = vec[vec.size() - 1];
     }
     ofstream outFile(path);
     if (outFile.is_open()) {
-        for (int i = 0; i < vec.size() - 1; i ++) {
+        for (int i = 0; i < vec.size() - 1; i++) {
             outFile << vec[i] << endl;
         }
         outFile.close();
-        cout << "File written successfully" << endl;
+        //    cout << "File written successfully" << endl; -> not needed
     } else {
         cout << "Error opening file" << endl;
     }
@@ -34,7 +34,6 @@ void DownloadFile(vector<string> vec) {
 
 DownloadResultClientCommand::DownloadResultClientCommand(DefaultIO &dio) : ClientCommand(dio) {
 }
-
 
 
 void DownloadResultClientCommand::execute() {
@@ -53,10 +52,10 @@ void DownloadResultClientCommand::execute() {
         this->dio.write("ok");
     }
 
-    cout<< "upload file" <<endl;
-    getline(cin,str);
+    cout << "upload file" << endl;
+    getline(cin, str);
     results.push_back(str);
-    thread t = thread(DownloadFile,results);
+    thread t = thread(DownloadFile, results);
     t.detach();
     //DownloadFile(results);
 }
