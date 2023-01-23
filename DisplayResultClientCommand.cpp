@@ -13,7 +13,7 @@ void DisplayResultClientCommand::execute() {
 // if there is a problem
     if (str == "please upload data" || str == "please classify the data.") {
         cout << str << endl;
-        this->dio.write("ok");
+      //  this->dio.write("ok");
         return;
     }
 
