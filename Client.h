@@ -7,6 +7,8 @@
 
 #include "DefaultIO.h"
 #include "SocketIO.h"
+#include <pthread.h>
+
 #include "ClientCommand.h"
 
 using namespace std;
@@ -25,6 +27,7 @@ public:
  * @param dio client IO
  */
     Client(int socket, DefaultIO &dio);
+
 /**
  * setter
  * @param socket of client

@@ -56,7 +56,9 @@ void ClassifyDataCommand::execute() {
             return;
         }
     }
-    // updating our results vector
+    // updating our results vecrot
+
     this->cd->setResultsAlg(results);
     dio.write("classifying data complete");
+    //dio.read();// ok
 }

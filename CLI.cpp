@@ -29,6 +29,9 @@ void CLI::start() {
             this->commands[stoi(input)]->execute();
             menu();
             input = this->dio.read();
+            if (input == "ok") { // in case an ok was sent without being read
+                input = this->dio.read();
+            }
         } catch (...) {
             perror("invalid input");
             exit(1);
