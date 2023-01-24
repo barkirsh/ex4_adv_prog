@@ -28,7 +28,7 @@ void DownloadFile(vector<string> vec) {
         outFile.close();
         //    cout << "File written successfully" << endl; -> not needed
     } else {
-        cout << "Error opening file" << endl;
+        //  cout << "Error opening file" << endl;
     }
 }
 
