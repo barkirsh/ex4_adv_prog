@@ -52,7 +52,7 @@ void DownloadResultClientCommand::execute() {
         this->dio.write("ok");
     }
 
-    cout << "upload file" << endl;
+    // cout << "upload file" << endl;
     getline(cin, str);
     results.push_back(str);
     thread t = thread(DownloadFile, results);

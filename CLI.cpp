@@ -35,8 +35,9 @@ void CLI::start() {
                 input = this->dio.read();
             }
         } catch (...) {
-            perror("invalid input");
-            exit(1);
+            break;
+            //perror("invalid input");
+            //exit(1);
         }
     }
     deleteAll();

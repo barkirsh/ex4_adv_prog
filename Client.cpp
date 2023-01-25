@@ -140,15 +140,16 @@ int main(int argc, char *argv[]) {
             }
         } catch (...) {
             cout << "invalid input" << endl;
+        //    dio.write("not ok");
             isLegal = false;
         }
         if (isLegal) {
             // send option to server
             dio.write(str);
 
-            if (option != 8){
+            if (option != 8) {
                 // go to command
-            c.commands[option]->execute();
+                c.commands[option]->execute();
             }
         }
     } while (str != "8");

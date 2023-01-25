@@ -49,7 +49,7 @@ void ServerClass::start() {
         perror("ERROR : listen socket");
         exit(1);
     }
-    cout << "The server is open and ready to accept" << endl;
+   // cout << "The server is open and ready to accept" << endl;
 
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
@@ -62,9 +62,6 @@ void ServerClass::start() {
             perror("ERROR : accept client");
         } else { // here we accept a new client
 
-            // thread newThread(ServerClass::handleClient, this,client_socket);
-            // this->threads.push_back(std::move(newThread));
-            // handleClient(client_socket);
             int curr_client;
 
             curr_client = pthread_create(&clients, NULL, handle_client, (void *) &client_socket);
