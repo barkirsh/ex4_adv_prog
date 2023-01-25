@@ -74,3 +74,13 @@ this fact created a problam because we didnt know if all the information moved a
 
 to deal with this, after every "write", we added "read" and after every "read" we added "write".
 in that way, the protocol will not merge a few messeges together because there is a read action in between.
+
+##notice:
+when one of the vectors numbers contains e - We require that there be the power after the e specifically - whether negative or positive. we dont eccept e1 for example.
+check if the distance is one of the distances
+check if the k is a positive number
+
+- notice:
+if the k is bigger then the number of lines in the file - the knn will be calculate on the whole file.
+In our distance calculations we use precision of 17 since the first assignment
+The part of given user input of the distance type, we accept any way of writing a distance that we know to calculate. For example: MAN -> man, MAN, Man, mAn and so on...
