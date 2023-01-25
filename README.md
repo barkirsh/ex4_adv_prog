@@ -75,7 +75,7 @@ this fact created a problam because we didnt know if all the information moved a
 to deal with this, after every "write", we added "read" and after every "read" we added "write".
 in that way, the protocol will not merge a few messeges together because there is a read action in between.
 
-##notice:
+## notice:
 when one of the vectors numbers contains e - We require that there be the power after the e specifically - whether negative or positive. we dont eccept e1 for example.
 check if the distance is one of the distances
 check if the k is a positive number
