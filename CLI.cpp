@@ -26,7 +26,9 @@ void CLI::start() {
     string input = this->dio.read();
     while (input != "8") {
         try {
-            this->commands[stoi(input)]->execute();
+            if (input != "invalid") {
+                this->commands[stoi(input)]->execute();
+            }
             menu();
             input = this->dio.read();
             if (input == "ok") { // in case an ok was sent without being read

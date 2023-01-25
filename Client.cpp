@@ -117,6 +117,7 @@ int main(int argc, char *argv[]) {
     int option;
     bool isLegal = true;
     do {
+        isLegal = true;
         string menu = dio.read();
 
         // print the menu
@@ -124,6 +125,13 @@ int main(int argc, char *argv[]) {
 
         // get option
         getline(cin, str);
+
+        if (str.empty()) {
+            cout << "invalid input" << endl;
+            dio.write("invalid");
+            isLegal = false;
+            continue;
+        }
 
         try {
             option = stoi(str);
